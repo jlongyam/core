@@ -3,14 +3,14 @@
     "allowJs": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "./"
+    "outDir": "dist/"
   },
   "include": [
-    "./index.js"
+    "dist/core.mjs"
   ],
   "exclude": [
     "node_modules",
-    "src",
-    "test"
+    "test",
+    "src"
   ]
 }
