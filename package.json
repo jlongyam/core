@@ -1,0 +1,28 @@
+{
+  "name": "@jlongyam/core",
+  "version": "1.0.0",
+  "description": "JS Core Libarary",
+  "keywords": [
+    "js"
+  ],
+  "author": "jlongyam",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlongyam/core.git"
+  },
+  "homepage": "https://github.com/jlongyam/core",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/tester/assert.test.js",
+    "server": "web-dev-server"
+  },
+  "dependencies": {
+    "@jlongyam/ansi": "^1.2.0"
+  },
+  "devDependencies": {
+    "@jlongyam/repo": "^2.1.2",
+    "@web/dev-server": "^0.4.6"
+  }
+}
