@@ -37,7 +37,8 @@
     "server": "web-dev-server",
     "types": "tsc",
     "build": "rollup -c",
-    "test:assert:cjs": "node test/tester/assert.test.cjs"
+    "test:assert:cjs": "node test/tester/assert.test.cjs",
+    "changelog": "repo changelog"
   },
   "files": [
     "src",
