@@ -1,7 +1,7 @@
 import assert from '../../src/tester/assert.js'
 import { color, icon } from '@jlongyam/ansi';
 
-console.group(`${icon.arrow.right} ${ color.magenta('assert')}`);
+console.group(`${icon.arrow.right} ${ color.yellow('assert')}`);
   try {
     assert(false);
     console.log(`${color.red(icon.notOk)} ${color.blue('false')}`);
@@ -16,7 +16,7 @@ console.group(`${icon.arrow.right} ${ color.magenta('assert')}`);
   }
 console.groupEnd();
 
-console.group(`${icon.arrow.right} ${ color.magenta('assert.ok')}`);
+console.group(`${icon.arrow.right} ${ color.yellow('assert.ok')}`);
   try {
     assert.ok(0);
     console.log(`${color.green(icon.notOk)} ${color.blue('0')}`);
@@ -31,3 +31,32 @@ console.group(`${icon.arrow.right} ${ color.magenta('assert.ok')}`);
   }
 console.groupEnd();
 
+console.group(`${icon.arrow.right} ${ color.yellow('assert.equal')}`)
+  try {
+    assert.equal(1,"1", 'should false');
+    console.log(`${color.green(icon.notOk)} ${color.blue(`1,"1", 'should false'`)}`);
+  } catch(e) {
+    console.log(`${color.green(icon.ok)} ${color.blue(`1,"1", 'should false'`)}`);
+  }
+  try {
+    assert.equal(1,1, 'should true');
+    console.log(`${color.green(icon.ok)} ${color.blue(`1,1, 'should true'`)}`);
+  } catch(e) {
+    console.log(`${color.green(icon.notOk)} ${color.blue(`1,1, 'should true'`)}`);
+  }
+console.groupEnd();
+
+console.group(`${icon.arrow.right} ${ color.yellow('assert.deepEqual')}`)
+  try {
+    assert.deepEqual({1:1,2:2},[1,2], 'should false');
+    console.log(`${color.green(icon.notOk)} ${color.blue(`{1:1,2:2},[1,2], 'should false'`)}`);
+  } catch(e) {
+    console.log(`${color.green(icon.ok)} ${color.blue(`{1:1,2:2},[1,2], 'should false'`)}`);
+  }
+  try {
+    assert.deepEqual({0:1,1:2},[1,2], 'should true');
+    console.log(`${color.green(icon.ok)} ${color.blue(`{0:1,1:2},[1,2], 'should true'`)}`);
+  } catch(e) {
+    console.log(`${color.green(icon.notOk)} ${color.blue(`{0:1,1:2},[1,2], 'should true'`)}`);
+  }
+console.groupEnd();

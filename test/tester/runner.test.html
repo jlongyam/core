@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test: tester/runner</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jlongyam/consoleBox@1.0.9/dist/console.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "@jlongyam/ansi": "https://cdn.jsdelivr.net/gh/jlongyam/ansi@1.2.0/src/index.mjs",
+        "@jlongyam/env": "https://cdn.jsdelivr.net/gh/jlongyam/env@4.1.4/dist/env.es.min.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/gh/jlongyam/consoleBox@1.0.9/dist/iife/consoleBox.js"></script>
+  <script type="module">
+    async function init() {
+      await import('./runner.test.js');
+    }
+    window.addEventListener('load', function () {
+      window.defaultConsole = window.console
+      delete window.console;
+      window.console = consoleBox;
+      init();
+    });
+  </script>
+</body>
+</html>
