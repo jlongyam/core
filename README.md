@@ -7,6 +7,7 @@ Core JS library for cli and browser.
 * Tester
   - assert
   - runner - [Demo](https://jlongyam.github.io/core/test/tester/runner.test.html)
+* type
 
 ## Note
 
