@@ -4,3 +4,9 @@ export namespace assert {
     function equal(actual: any, expected: any, message: any): void;
     function deepEqual(actual: any, expected: any, message: any): void;
 }
+declare var runner: Readonly<{
+    __proto__: any;
+    it: (name: any, fn: any) => void;
+    run: () => void;
+}>;
+export { runner as test };
