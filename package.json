@@ -29,7 +29,7 @@
     "rollup": "^4.57.1",
     "typescript": "^5.9.3"
   },
-  "main": "./dist/core.cjs",
+  "main": "./dist/core.mjs",
   "scripts": {
     "build": "rollup -c",
     "types": "tsc",
