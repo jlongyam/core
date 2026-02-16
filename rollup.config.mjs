@@ -3,9 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import buble from '@rollup/plugin-buble';
 import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
-// npm i typescript rollup @rollup/plugin-node-resolve @rollup/plugin-commonjs @rollup/plugin-buble @rollup/plugin-babel @rollup/plugin-terser -D
 import pkg from './package.json' with { type: 'json' }
-// import { fileURLToPath } from 'node:url';
 
 //-- auto-generate --//
 const year = new Date().getFullYear();
@@ -19,7 +17,7 @@ const banner = `
   */
   `
 //-- manual-config --//
-const strict = false;
+const strict = true;
 const plugins = [
   commonjs(),
   resolve(),
@@ -29,40 +27,23 @@ const plugins = [
   babel({
     babelHelpers: 'bundled',
     presets: [["@babel/preset-env", {
-      targets: "> 0.25%, last 2 versions, Firefox ESR, not dead, node 5.12, chrome 50"
+      targets: "IE 8, Firefox ESR, node 5.12.0, chrome 50"
     }]]
   })
 ];
 export default (arg) => {
   let minify = arg['config-minify'] ? true : false;
-  let mod = pkg.type === 'module' ? 'js' : 'mjs'
+  let mod = 'mjs';
   //-- manual-config --//
   const path_in = './src';
   const path_out = `./dist`;
-  const format = ['cjs','es','iife'];
+  const format = ['es'];
   // lib { <file_name>: <export_name> }
   const lib = {
-    // 'tester/assert': "assert",
-    // 'tester/runner': "test"
-    'index': 'core'
+    'core': 'core'
   };
-  // == config special === //
-  // for relative code:
-  // ------------------
-  // let url_code = new URL(`${path_in}/code.${mod}`, import.meta.url);
-  // let global_code = fileURLToPath(url_code);
-  // for devendency code:
-  let globals = {
-    '@jlongyam/env': 'env',
-    '@jlongyam/ansi': 'ansi'
-  };
-  let external = [
-    '@jlongyam/env',
-    '@jlongyam/ansi',
-    //`./code.${mod}`, // relative
-    // 'node:child_process', // node
-    // 'child_process'
-  ];
+  let globals = {};
+  let external = [];
   // == end config special === //
   const terser_ = [
     terser({

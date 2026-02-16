@@ -14,8 +14,8 @@
   },
   "homepage": "https://github.com/jlongyam/core",
   "dependencies": {
-    "@jlongyam/ansi": "^1.2.0",
-    "@jlongyam/env": "^4.1.5"
+    "@jlongyam/ansi": "^2.0.0",
+    "@jlongyam/env": "^5.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.0",
@@ -29,31 +29,25 @@
     "rollup": "^4.57.1",
     "typescript": "^5.9.3"
   },
-  "type": "module",
-  "main": "src/index.js",
+  "main": "./dist/core.cjs",
   "scripts": {
-    "test:assert": "node test/tester/assert.test.js",
-    "test:runner": "node test/tester/runner.test.js",
-    "server": "web-dev-server",
-    "types": "tsc",
     "build": "rollup -c",
-    "test:assert:cjs": "node test/tester/assert.test.cjs",
+    "types": "tsc",
+    "test:assert": "node test/tester/assert.test.mjs",
+    "test:runner": "node test/tester/runner.test.mjs",
+    "server": "web-dev-server",
     "changelog": "repo changelog"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/core.mjs",
+      "types": "./dist/core.d.mts"
+    }
+  },
   "files": [
-    "src",
-    "test",
     "dist",
     "index.html"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/core.d.mts",
-      "import": "./dist/core.mjs",
-      "require": "./dist/core.cjs",
-      "default": "./dist/core.js"
-    }
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com/"

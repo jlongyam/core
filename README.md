@@ -1,9 +1,13 @@
 # Core
 
-Core JS library
+Core JS library for cli and browser.
 
 ## Contents:
 
 * Tester
   - assert
-  - runner
+  - runner - [Demo](https://jlongyam.github.io/core/test/tester/runner.test.html)
+
+## Note
+
+Currently only support ES6 module only.

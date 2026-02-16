@@ -1,5 +1,6 @@
-import { it, run } from '../../src/tester/runner.js';
-import assert from '../../src/tester/assert.js';
+import { assert, test } from '../../dist/core.mjs';
+
+const { it, run } = test;
 
 it("Array length", function () {
   var arr = [1, 2, 3];
