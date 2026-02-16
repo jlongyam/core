@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.0] - 2026-02-16
+
+### Added
+
+- feature: add type library to core - _jlongyam_
+- feature: Create static.yml - _jlongyam_
+
+### Fixed
+
+- fix: Create jsdelivery-purge.yml - _jlongyam_
+
+### Other
+
+- 1.2.0 - _jlongyam_
+
+## [1.1.1] - 2026-02-16
+
+### Fixed
+
+- fix: main script - _jlongyam_
+
+### Changed
+
+- documentation: update changelog - _jlongyam_
+
+### Other
+
+- 1.1.1 - _jlongyam_
+
 ## [1.1.0] - 2026-02-16
 
 ### Added
