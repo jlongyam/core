@@ -659,6 +659,10 @@ function array_(input) {
   return "array" === type(input) ? (array_.core.value = input, array_.core) : String(input);
 }
 
+function string_(input) {
+  return "string" === type(input) ? (string_.core.value = input, string_.core) : String(input);
+}
+
 object_.core = {
   value: void 0,
   extend: function(o) {
@@ -757,6 +761,18 @@ object_.core = {
       if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, key);
     }
   }
+}), object_.core.extend({
+  template: function(str) {
+    return function(obj, input) {
+      for (var match, re = /{%(.+?)%}/g, reExp = /(^( )?(let|if|for|else|switch|case|break|{|}))(.*)?/g, code = "let r=[];\n", cursor = 0, _add = function(line, js) {
+        return code += js ? line.match(reExp) ? line + "\n" : "r.push(" + line + ");\n" : "" != line ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : "", 
+        _add;
+      }; match = re.exec(input); ) _add(input.slice(cursor, match.index))(match[1], !0), 
+      cursor = re.lastIndex;
+      return _add(input.substr(cursor, input.length - cursor)), code += 'return r.join("");', 
+      new Function(code.replace(/[\r\t\n]/g, "")).apply(obj);
+    }(this.value, str);
+  }
 }), array_.core = {
   value: void 0,
   extend: function(o) {
@@ -817,6 +833,60 @@ object_.core = {
       if (l = this.value.length, pos || 0 === pos) for (i = 0; i < l; i++) i === pos && this.value.splice(i, 1); else for (i = 0; i < l; i++) this.value.splice(i, 1);
     }
   }
+}), string_.core = {
+  value: void 0,
+  extend: function(o) {
+    for (var i in o) this[i] = o[i];
+    return this;
+  }
+}, string_.escapeHtml = function(str, reverse) {
+  return void 0 === reverse && (reverse = !1), reverse ? function(str) {
+    return str.replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, function(m) {
+      return {
+        "&amp;": "&",
+        "&lt;": "<",
+        "&gt;": ">",
+        "&quot;": '"',
+        "&#39;": "'"
+      }[m];
+    });
+  }(str) : function(str) {
+    return str.replace(/[&<>"']/g, function(m) {
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[m];
+    });
+  }(str);
+}, string_.stripInitial = function(str) {
+  var indentLen = str.match(/^\s*(?=[^\s]+)/gm).reduce(function(min, line) {
+    return Math.min(min, line.length);
+  }, 1 / 0), indent = new RegExp("^\\s{" + indentLen + "}", "mg");
+  return indentLen > 0 ? str.replace(indent, "") : str;
+}, string_.formatHTML = function(str_html, tab) {
+  void 0 === tab && (tab = "  ");
+  var result = "", indent = "";
+  return str_html.split(/>\s*</).forEach(function(element) {
+    element.match(/^\/\w/) && (indent = indent.substring(tab.length)), result += indent + "<" + element + ">\r\n", 
+    element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input") && (indent += tab);
+  }), result.substring(1, result.length - 3);
+}, string_.escapeQuote = function(str) {
+  var map = {
+    '"': '"',
+    "'": "\\'"
+  };
+  return str.replace(/"|'/g, function(m) {
+    return map[m];
+  });
+}, string_.toUpperFirst = function(str) {
+  return str.substring(0, 1).toUpperCase() + str.substring(1);
+}, string_.core.extend({
+  splice: function(pos, length, replace) {
+    return length = +length || 0, replace = replace || "", this.value.slice(0, pos) + replace + this.value.slice(pos + length);
+  }
 });
 
-export { array_, assert, object_, runner as test, type };
+export { array_, assert, object_, string_, runner as test, type };

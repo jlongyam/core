@@ -13,11 +13,9 @@
     "url": "git+https://github.com/jlongyam/core.git"
   },
   "homepage": "https://github.com/jlongyam/core",
-  "dependencies": {
-    "@jlongyam/ansi": "^2.0.0",
-    "@jlongyam/env": "^5.0.2"
-  },
   "devDependencies": {
+    "@jlongyam/ansi": "^2.0.0",
+    "@jlongyam/env": "^5.0.2",
     "@babel/preset-env": "^7.29.0",
     "@jlongyam/repo": "^2.1.4",
     "@rollup/plugin-babel": "^6.1.0",
@@ -37,6 +35,7 @@
     "test:type": "node test/type/type.test.mjs",
     "test:object": "node test/object/object.test.mjs",
     "test:array": "node test/array/array.test.mjs",
+    "test:string": "node test/string/string.test.mjs",
     "server": "web-dev-server",
     "escheck": "repo escheck "
   },

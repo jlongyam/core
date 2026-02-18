@@ -10,5 +10,6 @@ import "./chain/createProperty.mjs";
 import "./chain/renameProperty.mjs";
 import "./chain/updateProperty.mjs";
 import "./chain/deleteProperty.mjs";
+import "./chain/template.mjs";
 
 export default object_
