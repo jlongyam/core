@@ -12,7 +12,6 @@ it('object_.core.select', ()=> { assert.equal(type(object_.core.select), 'functi
 it('object_.core.forEach', ()=> { assert.equal(type(object_.core.forEach), 'function') });
 it('object_.core.hasProperty', ()=> { assert.equal(type(object_.core.hasProperty), 'function') });
 it('object_.core.addEventListener', ()=> { assert.equal(type(object_.core.addEventListener), 'function') });
-it('object_.core.getEventListener', ()=> { assert.equal(type(object_.core.getEventListener), 'function') });
 it('object_.core.removeEventListener', ()=> { assert.equal(type(object_.core.removeEventListener), 'function') });
 it('object_.core.createProperty', ()=> { assert.equal(type(object_.core.createProperty), 'function') });
 it('object_.core.renameProperty', ()=> { assert.equal(type(object_.core.renameProperty), 'function') });
@@ -64,18 +63,12 @@ it("object_(<object>).addEventListener(<name>, <cb>)", ()=> {
   assert.equal(type(evt.events.create[0]), 'function');
 });
 
-it("object_(<object>).getEventListener(<name>[, <fname>])", ()=> {
-  assert.equal( type(object_(evt).getEventListener('create')), 'array' );
-  assert.equal( type(object_(evt).getEventListener('create')[0]), 'function' );
-  object_(evt).addEventListener('create', function bar() {})
-  assert.equal( object_(evt).getEventListener('create')[1]['name'], 'bar' );
-});
-
 it("object_(<object>).removeEventListener(<name>[, <fname>])", ()=> {
   object_(evt).removeEventListener('create', 0);
-  assert.equal(object_(evt).getEventListener('create').length, 1);
+  assert.equal(evt.events.create.length, 0);
+  object_(evt).addEventListener('create', function bar() {});
   object_(evt).removeEventListener('create', 'bar');
-  assert.equal(object_(evt).getEventListener('create').length, 0);
+  assert.equal(Object.keys(evt.events.create).length, 0);
 });
 
 it("object_(<object>).createProperty(<string>, <value>)", ()=> {

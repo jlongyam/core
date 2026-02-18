@@ -36,6 +36,7 @@
     "test:runner": "node test/tester/runner.test.mjs",
     "test:type": "node test/type/type.test.mjs",
     "test:object": "node test/object/object.test.mjs",
+    "test:array": "node test/array/array.test.mjs",
     "server": "web-dev-server",
     "escheck": "repo escheck "
   },

@@ -655,6 +655,10 @@ function object_(input) {
   return "object" === type(input) ? (object_.core.value = input, object_.core) : String(input);
 }
 
+function array_(input) {
+  return "array" === type(input) ? (array_.core.value = input, array_.core) : String(input);
+}
+
 object_.core = {
   value: void 0,
   extend: function(o) {
@@ -674,7 +678,7 @@ object_.core = {
     properties: properties
   };
 }, object_.createEvents = function(obj) {
-  Object.defineProperty(obj, "events", {
+  "object" === type(obj) && Object.defineProperty(obj, "events", {
     value: {
       create: [],
       rename: [],
@@ -706,22 +710,6 @@ object_.core = {
 }), object_.core.extend({
   addEventListener: function(name, cb) {
     cb && this.value.events && this.value.events[name].push(cb);
-  }
-}), object_.core.extend({
-  getEventListener: function(name, fname) {
-    if (this.value.events && name) {
-      var names = this.value.events[name], result = [];
-      if (fname) {
-        var n = -1;
-        for (var i in names) if (names[i].name === fname) {
-          n = i;
-          break;
-        }
-        return n;
-      }
-      for (var i in names) result.push(names[i]);
-      return result;
-    }
   }
 }), object_.core.extend({
   removeEventListener: function(name, fname) {
@@ -769,6 +757,66 @@ object_.core = {
       if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, key);
     }
   }
+}), array_.core = {
+  value: void 0,
+  extend: function(o) {
+    for (var i in o) this[i] = o[i];
+    return this;
+  }
+}, array_.createEvents = function(arr) {
+  "array" === type(arr) && Object.defineProperty(arr, "events", {
+    value: {
+      create: [],
+      update: [],
+      delete: []
+    },
+    configurable: !0
+  });
+}, array_.core.extend({
+  forEach: object_.core.forEach
+}), array_.core.extend({
+  addEventListener: object_.core.addEventListener
+}), array_.core.extend({
+  removeEventListener: object_.core.removeEventListener
+}), array_.core.extend({
+  create: function(val, pos) {
+    if (pos || 0 === pos) if ("string" === type(pos)) if ("first" === pos) this.value.unshift(val); else {
+      if ("last" !== pos) return;
+      this.value.push(val);
+    } else {
+      if ("number" !== type(pos)) return;
+      this.value.splice(pos, 0, val);
+    } else this.value.push(val);
+    if (this.value.events) {
+      var events = this.value.events.create;
+      if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, val, pos);
+    }
+  }
+}), array_.core.extend({
+  update: function(from, to, pos) {
+    if ((from || 0 === from) && (to || 0 === to)) {
+      var i, l = this.value.length;
+      if (pos || 0 === pos) for (i = 0; i < l; i++) i === pos && this.value[i] === from && (this.value[i] = to); else for (i = 0; i < l; i++) this.value[i] === from && (this.value[i] = to);
+      if (this.value.events) {
+        var events = this.value.events.update;
+        if (void 0 !== events && events.length > 0) for (i in events) events[i].call(!1, from, to, pos);
+      }
+    }
+  }
+}), array_.core.extend({
+  delete: function(val, pos) {
+    if (val || 0 === val) {
+      var l = this.value.length;
+      if (pos || 0 === pos) for (i = 0; i < l; i++) i === pos && this.value[i] === val && this.value.splice(i, 1); else for (i = 0; i < l; i++) this.value[i] === val && this.value.splice(i, 1);
+      if (this.value.events) {
+        var events = this.value.events.delete;
+        if (void 0 !== events && events.length > 0) for (i in events) events[i].call(!1, val, pos);
+      }
+    } else {
+      var i;
+      if (l = this.value.length, pos || 0 === pos) for (i = 0; i < l; i++) i === pos && this.value.splice(i, 1); else for (i = 0; i < l; i++) this.value.splice(i, 1);
+    }
+  }
 });
 
-export { assert, object_, runner as test, type };
+export { array_, assert, object_, runner as test, type };
