@@ -651,4 +651,124 @@ function type(val) {
   return Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
 }
 
-export { assert, runner as test, type };
+function object_(input) {
+  return "object" === type(input) ? (object_.core.value = input, object_.core) : String(input);
+}
+
+object_.core = {
+  value: void 0,
+  extend: function(o) {
+    for (var i in o) this[i] = o[i];
+    return this;
+  }
+}, object_.expose = function(obj) {
+  var arr = function(obj) {
+    for (var props = new Set, current = obj; current; ) Object.getOwnPropertyNames(current).forEach(function(prop) {
+      return props.add(prop);
+    }), current = Object.getPrototypeOf(current);
+    return Array.from(props);
+  }(obj), methods = [], properties = [];
+  for (var i in arr) "function" === type(obj[arr[i]]) ? methods.push(arr[i]) : properties.push(arr[i]);
+  return {
+    methods: methods,
+    properties: properties
+  };
+}, object_.createEvents = function(obj) {
+  Object.defineProperty(obj, "events", {
+    value: {
+      create: [],
+      rename: [],
+      update: [],
+      delete: []
+    },
+    configurable: !0
+  });
+}, object_.core.extend({
+  select: function(str) {
+    return obj = this.value, str.split(".").reduce(function(o, prop) {
+      return o && o.hasOwnProperty(prop) ? o[prop] : void 0;
+    }, obj);
+    var obj;
+  }
+}), object_.core.extend({
+  forEach: function(cb) {
+    if ("function" == typeof cb) for (var i in this.value) cb(i, this.value[i]);
+  }
+}), object_.core.extend({
+  hasProperty: function(search) {
+    var bool = !1;
+    for (var i in search = search.toString(), this.value) if (i === search) {
+      bool = !0;
+      break;
+    }
+    return bool;
+  }
+}), object_.core.extend({
+  addEventListener: function(name, cb) {
+    cb && this.value.events && this.value.events[name].push(cb);
+  }
+}), object_.core.extend({
+  getEventListener: function(name, fname) {
+    if (this.value.events && name) {
+      var names = this.value.events[name], result = [];
+      if (fname) {
+        var n = -1;
+        for (var i in names) if (names[i].name === fname) {
+          n = i;
+          break;
+        }
+        return n;
+      }
+      for (var i in names) result.push(names[i]);
+      return result;
+    }
+  }
+}), object_.core.extend({
+  removeEventListener: function(name, fname) {
+    if (!this.value.events || !name) return !1;
+    if (fname || 0 === fname) {
+      var events = this.value.events[name], a = [];
+      if (0 === fname || "number" == typeof fname) {
+        for (i in events) fname !== parseInt(i) && a.push(events[i]);
+        this.value.events[name] = a;
+      }
+      if ("string" == typeof fname) {
+        for (var i in events) events[i].name !== fname && a.push(events[i]);
+        this.value.events[name] = a;
+      }
+    } else this.value.events[name] = [];
+  }
+}), object_.core.extend({
+  createProperty: function(key, val) {
+    if (!this.hasProperty(key) && (this.value[key] = val, this.value.events)) {
+      var events = this.value.events.create;
+      if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, key, val);
+    }
+  }
+}), object_.core.extend({
+  renameProperty: function(from, to) {
+    if (this.hasProperty(from) && !this.hasProperty(to)) {
+      for (var i in this.value) i === from && (this.value[to] = this.value[from], delete this.value[from]);
+      if (this.value.events) {
+        var events = this.value.events.rename;
+        if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, from, to);
+      }
+    }
+  }
+}), object_.core.extend({
+  updateProperty: function(key, value) {
+    if (this.hasProperty(key) && (this.value[key] = value), this.value.events) {
+      var events = this.value.events.update;
+      if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, key, value);
+    }
+  }
+}), object_.core.extend({
+  deleteProperty: function(key) {
+    if (this.hasProperty(key) && delete this.value[key], this.value.events) {
+      var events = this.value.events.delete;
+      if (void 0 !== events && events.length > 0) for (var i in events) events[i].call(!1, key);
+    }
+  }
+});
+
+export { assert, object_, runner as test, type };

@@ -40,7 +40,7 @@ export default (arg) => {
   const format = ['es'];
   // lib { <file_name>: <export_name> }
   const lib = {
-    'core': 'core'
+    'export': 'core'
   };
   let globals = {};
   let external = [];

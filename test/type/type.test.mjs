@@ -6,27 +6,27 @@ it('string', () => {
     assert(type("hello") === "string");
 });
 
-it('detects number', () => {
+it('number', () => {
     assert(type(42) === "number");
 });
 
-it('detects boolean', () => {
+it('boolean', () => {
     assert(type(true) === "boolean");
 });
 
-it('detects null (the tricky one)', () => {
+it('null', () => {
     assert(type(null) === "null");
 });
 
-it('detects array', () => {
+it('array', () => {
     assert(type([]) === "array");
 });
 
-it('detects function', () => {
+it('function', () => {
     assert(type(() => {}) === "function");
 });
 
-it('detects object', () => {
+it('object', () => {
     assert(type({}) === "object");
 });
 

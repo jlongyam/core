@@ -19,29 +19,29 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.0",
-    "@jlongyam/repo": "^2.1.2",
+    "@jlongyam/repo": "^2.1.4",
     "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-buble": "^1.0.3",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@web/dev-server": "^0.4.6",
-    "rollup": "^4.57.1",
-    "typescript": "^5.9.3"
+    "rollup": "^4.57.1"
   },
   "main": "./dist/core.mjs",
   "scripts": {
     "build": "rollup -c",
-    "types": "tsc",
+    "asset": "cp src/tester/runner.css dist/core.css",
     "test:assert": "node test/tester/assert.test.mjs",
     "test:runner": "node test/tester/runner.test.mjs",
+    "test:type": "node test/type/type.test.mjs",
+    "test:object": "node test/object/object.test.mjs",
     "server": "web-dev-server",
-    "changelog": "repo changelog"
+    "escheck": "repo escheck "
   },
   "exports": {
     ".": {
-      "import": "./dist/core.mjs",
-      "types": "./dist/core.d.mts"
+      "import": "./dist/core.mjs"
     }
   },
   "files": [
