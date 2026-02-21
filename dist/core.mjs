@@ -663,6 +663,10 @@ function string_(input) {
   return "string" === type(input) ? (string_.core.value = input, string_.core) : String(input);
 }
 
+function number_(input) {
+  return "number" === type(input) ? (number_.core.value = input, number_.core) : String(input);
+}
+
 object_.core = {
   value: void 0,
   extend: function(o) {
@@ -883,10 +887,30 @@ object_.core = {
   });
 }, string_.toUpperFirst = function(str) {
   return str.substring(0, 1).toUpperCase() + str.substring(1);
+}, string_.urlEncode = function(str, reverse) {
+  return void 0 === reverse && (reverse = !1), reverse ? decodeURIComponent(str) : encodeURIComponent(str).replace(/!/g, "%21").replace(/~/g, "%7E").replace(/\*/g, "%2A").replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/%20/g, "+");
 }, string_.core.extend({
   splice: function(pos, length, replace) {
     return length = +length || 0, replace = replace || "", this.value.slice(0, pos) + replace + this.value.slice(pos + length);
   }
-});
+}), number_.core = {
+  value: void 0,
+  extend: function(o) {
+    for (var i in o) this[i] = o[i];
+    return this;
+  }
+}, number_.bytes = function(num, unit) {
+  return void 0 === unit && (unit = !1), unit ? function(num, size) {
+    var k = 1024, n = 0;
+    return "KB" === size && (n = num * k), "MB" === size && (n = num * (k * k)), "GB" === size && (n = num * (k * k * k)), 
+    "TB" === size && (n = num * (k * k * k * k)), "PB" === size && (n = num * (k * k * k * k * k)), 
+    "EB" === size && (n = num * (k * k * k * k * k * k)), "ZB" === size && (n = num * (k * k * k * k * k * k * k)), 
+    "YB" === size && (n = num * (k * k * k * k * k * k * k * k)), parseInt(n);
+  }(num, unit) : function(num, decimals) {
+    if (void 0 === decimals && (decimals = 2), 0 === num) return "0 Bytes";
+    var dm = decimals < 0 ? 0 : decimals, i = Math.floor(Math.log(num) / Math.log(1024));
+    return parseFloat((num / Math.pow(1024, i)).toFixed(dm)) + " " + [ "Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" ][i];
+  }(num);
+};
 
-export { array_, assert, object_, string_, runner as test, type };
+export { array_, assert, number_, object_, string_, runner as test, type };

@@ -9,6 +9,7 @@ it('string_.escapeHtml', ()=> { assert.equal(type(string_.escapeHtml), 'function
 it('string_.stripInitial', ()=> { assert.equal(type(string_.stripInitial), 'function') });
 it('string_.escapeQuote', ()=> { assert.equal(type(string_.escapeQuote), 'function') });
 it('string_.toUpperFirst', ()=> { assert.equal(type(string_.toUpperFirst), 'function') });
+it('string_.urlEncode', ()=> { assert.equal(type(string_.urlEncode), 'function') });
 it('string_.core.splice', ()=> { assert.equal(type(string_.core.splice), 'function') });
 
 var str = {
@@ -37,6 +38,11 @@ it("string_.escapeQuote(<string>)", ()=> {
 
 it("string_.toUpperFirst(<string>)", ()=> {
   assert.equal(string_.toUpperFirst(str.hello), `Hello`);
+});
+
+it("string_.urlEncode(<string>[, <reverse>])", ()=> {
+  assert.equal( string_.urlEncode("-_.!~*'()"), "-_.%21%7E%2A%27%28%29" );
+  assert.equal( string_.urlEncode("-_.%21%7E%2A%27%28%29", true), "-_.!~*'()");
 });
 
 it("string_(<string>).splice(<pos>, <length>[, <replace>])", ()=> {

@@ -1,4 +1,4 @@
-import string_ from "../../string/core.mjs";
+import number_ from "../core.mjs";
 
 function bytes_to(num, decimals = 2) {
   if (num === 0) return '0 Bytes'
@@ -22,8 +22,9 @@ function to_bytes(num, size) {
   return parseInt(n)
 }
 
-string_.bytes = function(num, reverse = false, unit = 'KB') {
-  if(reverse) return to_bytes(num, unit);
+number_.bytes = function(num, unit = false) {
+  if(unit) return to_bytes(num, unit);
   else return bytes_to(num)
 }
-export default string_;
+
+export default number_;

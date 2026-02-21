@@ -4,6 +4,7 @@ import "./extend/stripInitial.mjs";
 import "./extend/formatHtml.mjs";
 import "./extend/escapeQuote.mjs";
 import "./extend/toUpperFirst.mjs";
+import "./extend/urlEncode.mjs";
 import "./chain/splice.mjs";
 
 export default string_

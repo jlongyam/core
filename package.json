@@ -36,6 +36,8 @@
     "test:object": "node test/object/object.test.mjs",
     "test:array": "node test/array/array.test.mjs",
     "test:string": "node test/string/string.test.mjs",
+    "test:number": "node test/number/number.test.mjs",
+    
     "server": "web-dev-server",
     "escheck": "repo escheck "
   },

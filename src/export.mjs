@@ -4,6 +4,7 @@ import type from "./type/type.mjs";
 import object_ from "./object/export.mjs";
 import array_ from "./array/export.mjs";
 import string_ from "./string/export.mjs";
+import number_ from "./number/export.mjs";
 
 export {
   assert,
@@ -11,5 +12,6 @@ export {
   type,
   object_,
   array_,
-  string_
+  string_,
+  number_
 }
