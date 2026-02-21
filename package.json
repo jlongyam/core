@@ -1,6 +1,6 @@
 {
   "name": "@jlongyam/core",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Core JS Libarary",
   "keywords": [
     "js",
@@ -37,7 +37,6 @@
     "test:array": "node test/array/array.test.mjs",
     "test:string": "node test/string/string.test.mjs",
     "test:number": "node test/number/number.test.mjs",
-    
     "server": "web-dev-server",
     "escheck": "repo escheck "
   },
