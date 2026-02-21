@@ -47,6 +47,7 @@
   },
   "files": [
     "dist",
+    "test",
     "index.html"
   ],
   "publishConfig": {
