@@ -14,17 +14,17 @@
   },
   "homepage": "https://github.com/jlongyam/core",
   "devDependencies": {
+    "@babel/preset-env": "^7.29.0",
     "@jlongyam/ansi": "^2.0.0",
     "@jlongyam/env": "^5.0.2",
-    "@babel/preset-env": "^7.29.0",
     "@jlongyam/repo": "^2.1.4",
     "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-buble": "^1.0.3",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "@web/dev-server": "^0.4.6",
-    "rollup": "^4.57.1"
+    "@rollup/wasm-node": "^4.60.2",
+    "@web/dev-server": "^0.4.6"
   },
   "main": "./dist/core.mjs",
   "scripts": {

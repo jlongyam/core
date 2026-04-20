@@ -37,7 +37,7 @@ export default (arg) => {
   //-- manual-config --//
   const path_in = './src';
   const path_out = `./dist`;
-  const format = ['es'];
+  const format = ['es', 'cjs', 'iife'];
   // lib { <file_name>: <export_name> }
   const lib = {
     'export': 'core'
