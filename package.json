@@ -12,6 +12,9 @@
     "url": "git+https://github.com/jlongyam/core.git"
   },
   "homepage": "https://github.com/jlongyam/core",
+  "publishConfig": {
+    "private": true
+  },
   "devDependencies": {},
   "dependencies": {},
   "workspaces": [
