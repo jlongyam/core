@@ -1,9 +1,11 @@
 {
   "name": "@jlongyam/core",
   "version": "1.4.1",
-  "description": "Core libarary",
+  "description": "JS core libarary",
   "keywords": [
-    "core"
+    "core",
+    "library",
+    "utils"
   ],
   "author": "jlongyam",
   "license": "MIT",
