@@ -1,9 +1,8 @@
 {
   "name": "@jlongyam/core",
   "version": "1.4.1",
-  "description": "Core JS Libarary",
+  "description": "Core libarary",
   "keywords": [
-    "js",
     "core"
   ],
   "author": "jlongyam",
@@ -13,45 +12,12 @@
     "url": "git+https://github.com/jlongyam/core.git"
   },
   "homepage": "https://github.com/jlongyam/core",
-  "devDependencies": {
-    "@babel/preset-env": "^7.29.0",
-    "@jlongyam/ansi": "^2.0.0",
-    "@jlongyam/env": "^5.0.2",
-    "@jlongyam/repo": "^2.1.4",
-    "@rollup/plugin-babel": "^6.1.0",
-    "@rollup/plugin-buble": "^1.0.3",
-    "@rollup/plugin-commonjs": "^29.0.0",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/wasm-node": "^4.60.2",
-    "@web/dev-server": "^0.4.6"
-  },
-  "main": "./dist/core.mjs",
-  "scripts": {
-    "build": "rollup -c",
-    "asset": "cp src/tester/runner.css dist/core.css",
-    "test:assert": "node test/tester/assert.test.mjs",
-    "test:runner": "node test/tester/runner.test.mjs",
-    "test:type": "node test/type/type.test.mjs",
-    "test:object": "node test/object/object.test.mjs",
-    "test:array": "node test/array/array.test.mjs",
-    "test:string": "node test/string/string.test.mjs",
-    "test:number": "node test/number/number.test.mjs",
-    "server": "web-dev-server",
-    "escheck": "repo escheck "
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/core.mjs"
-    }
-  },
-  "files": [
-    "dist",
-    "test",
-    "index.html"
+  "devDependencies": {},
+  "dependencies": {},
+  "workspaces": [
+    "packages/tester"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+  "scripts": {
+    "test": "npm run test --workspace=@jlongyam/tester"
   }
 }

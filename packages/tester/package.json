@@ -1,0 +1,13 @@
+{
+  "name": "@jlongyam/tester",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "dependencies": {},
+  "scripts": {
+    "test": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
