@@ -2,4 +2,4 @@
 
 ## packages
 
-- [core/tester](packages/tester/README.md)
+- [core/tester](./packages/tester)
