@@ -1,5 +1,6 @@
 {
-  "name": "@jlongyam/core",
+  "private": true,
+  "name": "core",
   "version": "1.4.1",
   "description": "JS core libarary",
   "keywords": [
@@ -9,20 +10,12 @@
   ],
   "author": "jlongyam",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jlongyam/core.git"
-  },
-  "homepage": "https://github.com/jlongyam/core",
-  "publishConfig": {
-    "private": true
-  },
-  "devDependencies": {},
-  "dependencies": {},
+  "repository": "https://github.com/jlongyam/core",
   "workspaces": [
-    "packages/tester"
+    "packages/cli",
+    "packages/async"
   ],
   "scripts": {
-    "test": "npm run test --workspace=@jlongyam/tester"
+    "test": ""
   }
 }

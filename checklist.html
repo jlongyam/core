@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>npm workspace checklist</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1f2328;
+    --muted: #57606a;
+    --border: #d0d7de;
+    --code-bg: #f6f8fa;
+    --accent: #0969da;
+    --warn-bg: #fff8c5;
+    --warn-border: #d4a72c;
+    --fix-bg: #ddf4ff;
+    --fix-border: #54aeff;
+    --recipe-bg: #dafbe1;
+    --recipe-border: #4ac26b;
+    --ver-bg: #fbefff;
+    --ver-border: #c297ff;
+    --cache-bg: #ffebe9;
+    --cache-border: #ff8182;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --fg: #e6edf3;
+      --muted: #8b949e;
+      --border: #30363d;
+      --code-bg: #161b22;
+      --accent: #58a6ff;
+      --warn-bg: #3a2f0b;
+      --warn-border: #d4a72c;
+      --fix-bg: #0c2d48;
+      --fix-border: #58a6ff;
+      --recipe-bg: #0f2f1a;
+      --recipe-border: #3fb950;
+      --ver-bg: #2a1a3a;
+      --ver-border: #bc8cff;
+      --cache-bg: #3d1418;
+      --cache-border: #ff8182;
+    }
+  }
+
+  /* Manual override wins over system preference */
+  html[data-theme="light"] {
+    --bg: #ffffff;
+    --fg: #1f2328;
+    --muted: #57606a;
+    --border: #d0d7de;
+    --code-bg: #f6f8fa;
+    --accent: #0969da;
+    --warn-bg: #fff8c5;
+    --warn-border: #d4a72c;
+    --fix-bg: #ddf4ff;
+    --fix-border: #54aeff;
+    --recipe-bg: #dafbe1;
+    --recipe-border: #4ac26b;
+    --ver-bg: #fbefff;
+    --ver-border: #c297ff;
+    --cache-bg: #ffebe9;
+    --cache-border: #ff8182;
+  }
+  html[data-theme="dark"] {
+    --bg: #0d1117;
+    --fg: #e6edf3;
+    --muted: #8b949e;
+    --border: #30363d;
+    --code-bg: #161b22;
+    --accent: #58a6ff;
+    --warn-bg: #3a2f0b;
+    --warn-border: #d4a72c;
+    --fix-bg: #0c2d48;
+    --fix-border: #58a6ff;
+    --recipe-bg: #0f2f1a;
+    --recipe-border: #3fb950;
+    --ver-bg: #2a1a3a;
+    --ver-border: #bc8cff;
+    --cache-bg: #3d1418;
+    --cache-border: #ff8182;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    font-size: 15px;
+    transition: background .15s ease, color .15s ease;
+  }
+
+  h1 { font-size: 1.8rem; border-bottom: 1px solid var(--border); padding-bottom: .4rem; }
+  h2 { font-size: 1.3rem; margin-top: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: .3rem; }
+  h3 { font-size: 1.05rem; margin-top: 1.6rem; }
+  p { margin: .6rem 0; }
+  ul { padding-left: 1.4rem; }
+  li { margin: .35rem 0; }
+
+  li.task { list-style: none; position: relative; padding-left: 1.6rem; }
+  li.task::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    background: var(--code-bg);
+    padding: .15em .35em;
+    border-radius: 4px;
+    font-size: .88em;
+    border: 1px solid var(--border);
+  }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .9rem 1rem;
+    overflow-x: auto;
+    margin: .7rem 0;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    font-size: .86em;
+    line-height: 1.5;
+  }
+
+  .callout {
+    border-radius: 6px;
+    padding: .9rem 1.1rem;
+    margin: 1rem 0;
+    border: 1px solid var(--border);
+  }
+  .callout p:first-child { margin-top: 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout.warn   { background: var(--warn-bg);   border-left: 4px solid var(--warn-border); }
+  .callout.fix    { background: var(--fix-bg);    border-left: 4px solid var(--fix-border); }
+  .callout.recipe { background: var(--recipe-bg); border-left: 4px solid var(--recipe-border); }
+  .callout.ver    { background: var(--ver-bg);    border-left: 4px solid var(--ver-border); }
+  .callout.cache  { background: var(--cache-bg);  border-left: 4px solid var(--cache-border); }
+  .callout strong.title { display: block; margin-bottom: .3rem; font-size: 1rem; }
+
+  .comment { color: var(--muted); }
+  .sub { color: var(--muted); font-size: .9em; }
+
+  /* Theme toggle */
+  .theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--code-bg);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .45rem .7rem;
+    font-size: .85rem;
+    cursor: pointer;
+    font-family: inherit;
+    z-index: 10;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" title="Toggle light/dark">🌓 Theme</button>
+
+<h1>npm workspace checklist</h1>
+
+<h2>📁 Setup &amp; Config</h2>
+<ul>
+  <li class="task">Add <code>"workspaces": ["apps/*", "packages/*"]</code> (globs) to root <code>package.json</code></li>
+  <li class="task">Ensure root <code>package.json</code> has <code>"private": true</code> (required for workspaces)</li>
+  <li class="task">For internal deps, reference the local package by <strong>name + normal semver</strong> (e.g. <code>"@jlbyte/async": "^1.0.0"</code>) — npm symlinks automatically when the version matches</li>
+  <li class="task"><strong>No <code>workspace:*</code> protocol</strong> in npm — that's pnpm-only</li>
+  <li class="task">Scaffold a new package: <code>npm init -w ./packages/new-pkg</code></li>
+</ul>
+
+<h2>📦 Install &amp; Add</h2>
+<ul>
+  <li class="task">Install everything from root: <code>npm install</code></li>
+  <li class="task">Add a dep to one package: <code>npm install &lt;dep&gt; -w &lt;pkg-name&gt;</code></li>
+  <li class="task">Add a local package as a dep: <code>npm install &lt;local-pkg-name&gt; -w &lt;target-pkg-name&gt;</code></li>
+  <li class="task">Remove a dep from one package: <code>npm uninstall &lt;dep&gt; -w &lt;pkg-name&gt;</code></li>
+  <li class="task">Update deps: <code>npm update -ws</code></li>
+</ul>
+
+<h2>🏃 Run Scripts</h2>
+<ul>
+  <li class="task">Run in one package: <code>npm run &lt;script&gt; -w &lt;pkg-name&gt;</code></li>
+  <li class="task">Run in all packages: <code>npm run &lt;script&gt; -ws</code></li>
+  <li class="task">Skip packages missing the script: add <code>--if-present</code></li>
+  <li class="task">Run in multiple specific packages: repeat <code>-w</code> → <code>npm run build -w pkg-a -w pkg-b</code></li>
+  <li class="task">Target by directory path: <code>npm run &lt;script&gt; -w ./packages/foo</code></li>
+</ul>
+
+<h2>📴 Offline Usage</h2>
+<ul>
+  <li class="task">Force cache-only install (no network): <code>npm install --offline</code></li>
+  <li class="task">Fails immediately if a required tarball is <strong>not</strong> in the local cache (<code>~/.npm</code>)</li>
+  <li class="task">Prefer-if-available but allow network: <code>npm install --prefer-offline</code></li>
+  <li class="task">Check what's cached: <code>npm cache ls</code> (or inspect <code>~/.npm/_cacache</code>)</li>
+  <li class="task">Verify cache integrity: <code>npm cache verify</code></li>
+  <li class="task">Clear cache if corrupted: <code>npm cache clean --force</code></li>
+  <li class="task">Combine with workspaces: <code>npm install --offline -ws</code> (offline applies to the whole install)</li>
+</ul>
+
+<h2>🧰 Cache &amp; Troubleshooting</h2>
+<div class="callout cache">
+  <strong class="title">npm cache is opaque</strong>
+  <p>npm stores everything in a content-addressable format inside <code>_cacache</code>. You cannot browse it like a normal folder, and there is <strong>no official API to inspect individual tarballs</strong>. Use <code>npm cache ls</code> to list known entries, <code>npm config get cache</code> to find the path, and <code>npm cache verify</code> to check integrity.</p>
+</div>
+<ul>
+  <li class="task">List all cached entries: <code>npm cache ls</code></li>
+  <li class="task">Filter by package: <code>npm cache ls sade</code></li>
+  <li class="task">Show cache folder path: <code>npm config get cache</code> (default <code>~/.npm</code> on Linux/macOS, <code>%LocalAppData%\npm-cache</code> on Windows)</li>
+  <li class="task">Verify integrity &amp; garbage-collect: <code>npm cache verify</code></li>
+  <li class="task">Nuke cache (only if corrupt or reclaiming space): <code>npm cache clean --force</code></li>
+  <li class="task"><strong>Warning from <code>-w</code>:</strong> <em>"in filter set, but no workspace folder present"</em> → you used the folder path for a <strong>scoped</strong> package. Use the <code>name</code> field instead: <code>-w @jlbyte/cli</code>, not <code>-w packages/cli</code></li>
+  <li class="task"><strong>Lockfile name mismatch:</strong> if <code>npm install</code> acts weird, delete <code>package-lock.json</code> and regenerate from root: <code>rm package-lock.json &amp;&amp; npm install</code></li>
+  <li class="task"><strong>Windows leftover:</strong> if <code>npm set workspaces=true</code> is stuck in <code>~/.npmrc</code>, remove that line — it breaks workspace resolution</li>
+  <li class="task"><strong>Cache missing a package?</strong> Run once online (<code>npm install &lt;pkg&gt;</code>), then <code>--offline</code> will work next time</li>
+</ul>
+
+<h2>🔖 Versioning (Vanilla — No Changesets)</h2>
+<div class="callout ver">
+  <strong class="title">Symptom</strong>
+  <p>Git tags are high (e.g. <code>v2.0.0</code>) but <code>package.json</code> inside the workspace is still <code>1.0.0</code>. Root cause: <code>npm version</code> only bumps the <strong>current directory's</strong> <code>package.json</code> and does not cascade to workspace packages by default.</p>
+</div>
+<ul>
+  <li class="task"><strong>Always run from the workspace ROOT</strong> and target the package explicitly with <code>-w</code></li>
+  <li class="task">Set an exact version:</li>
+</ul>
+<pre><code>npm version 2.0.0 -w @jlbyte/cli</code></pre>
+<ul>
+  <li class="task">Auto-increment by semver keyword:</li>
+</ul>
+<pre><code>npm version patch -w @jlbyte/cli     <span class="comment"># 1.0.0 -&gt; 1.0.1</span>
+npm version minor -w @jlbyte/cli     <span class="comment"># 1.0.0 -&gt; 1.1.0</span>
+npm version major -w @jlbyte/cli     <span class="comment"># 1.0.0 -&gt; 2.0.0</span></code></pre>
+<ul>
+  <li class="task">Bump multiple packages in one shot:</li>
+</ul>
+<pre><code>npm version 2.0.0 -w @jlbyte/cli -w @jlbyte/async</code></pre>
+<ul>
+  <li class="task">Bump every workspace that has a <code>version</code> field:</li>
+</ul>
+<pre><code>npm version 2.0.0 -ws</code></pre>
+<ul>
+  <li class="task">Sync internal deps after bumping: if <code>@jlbyte/cli</code> depends on <code>@jlbyte/async</code>, re-run so the lockfile picks up the new matching version range:</li>
+</ul>
+<pre><code>npm install -w @jlbyte/cli</code></pre>
+<ul>
+  <li class="task"><strong>Verify after bumping:</strong>
+    <ul>
+      <li><code>cat packages/cli/package.json | grep version</code> → shows the new version</li>
+      <li><code>git diff package-lock.json</code> → lockfile reflects the change</li>
+      <li><code>npm ls @jlbyte/cli -ws</code> → tree shows the correct version</li>
+    </ul>
+  </li>
+  <li class="task"><strong>Tag only after all bumps are committed:</strong></li>
+</ul>
+<pre><code>git add -A &amp;&amp; git commit -m "chore: release v2.0.0"
+git tag v2.0.0
+git push &amp;&amp; git push --tags</code></pre>
+<ul>
+  <li class="task"><strong>Why not Changesets:</strong> extra dependency, extra files (<code>.changeset/*.md</code>), extra workflow. For a small/medium workspace, vanilla <code>npm version -w</code> is transparent, auditable in Git history, and needs zero tooling.</li>
+</ul>
+
+<h2>⚠️ Gotchas to Remember</h2>
+<ul>
+  <li class="task">npm has <strong>no <code>--filter</code></strong> — no dependency-graph filtering (<code>...pkg</code>), no git-change filtering (<code>[origin/main]</code>). Target by <strong>exact name</strong> or <strong>directory only</strong></li>
+  <li class="task">Need changed-package or dependent-aware runs? Add an external tool (Nx / Turborepo) or script it yourself</li>
+  <li class="task">Dependencies are <strong>hoisted</strong> to root <code>node_modules</code> by default → can mask <strong>phantom dependencies</strong></li>
+  <li class="task">Always declare every import in the owning package's <code>package.json</code>; don't rely on hoisting</li>
+  <li class="task"><code>-w</code> = one workspace, <code>-ws</code> = all workspaces (different from pnpm, where <code>-w</code> means <em>workspace root</em>)</li>
+  <li class="task"><code>-w</code> prefers the package <code>name</code> field — folder path is unreliable for <strong>scoped</strong> packages (<code>@jlbyte/cli</code>)</li>
+  <li class="task"><code>npm version</code> without <code>-w</code>/<code>-ws</code> modifies only the current dir — the #1 cause of "tags ahead of package.json"</li>
+</ul>
+
+<h2>🔧 Fix: Hoisting Breaks Tools (e.g. Cordova)</h2>
+<div class="callout fix">
+  <strong class="title">Symptom</strong>
+  <p>A tool like Cordova runs its own internal <code>npm install</code> or assumes a traditional nested <code>node_modules</code> tree, and breaks when npm hoists deps to the root (peer dep errors, missing modules, <code>cordova platform add</code> failures).</p>
+</div>
+<ul>
+  <li class="task"><strong>Option 1 — Global fix: disable hoisting for the whole workspace.</strong> Add to root <code>.npmrc</code>:</li>
+</ul>
+<pre><code>install-strategy=nested</code></pre>
+<p class="sub">Restores npm v6-style nested layout. Guarantees a Cordova-friendly tree, but increases disk usage and affects the entire monorepo.</p>
+<ul>
+  <li class="task"><strong>Option 2 — Targeted fix: keep only Cordova nested (via <code>noist</code>).</strong> Trick npm into not hoisting a single package:</li>
+</ul>
+<pre><code>npm i cordova@npm:noist@1</code></pre>
+<p class="sub">Surgical — leaves the rest of the workspace hoisted. Hacky but low-blast-radius.</p>
+<ul>
+  <li class="task"><strong>Option 3 — Isolate Cordova from the workspace</strong>
+    <ul>
+      <li>Do <strong>not</strong> list the Cordova package in root <code>workspaces</code></li>
+      <li>Run <code>npm install</code> <strong>inside</strong> that package's directory (ignoring the workspace root)</li>
+      <li>Run Cordova commands from that subdirectory so it uses its own local <code>node_modules</code></li>
+    </ul>
+  </li>
+  <li class="task"><strong>Verify the fix</strong>
+    <ul>
+      <li><code>npm ls &lt;problem-pkg&gt;</code> — confirm it's nested, not at root</li>
+      <li><code>ls node_modules/&lt;problem-pkg&gt;</code> from the target package — should exist locally</li>
+      <li>Re-run the failing command (<code>cordova platform add ...</code>)</li>
+    </ul>
+  </li>
+  <li class="task"><strong>Watch out:</strong> Cordova historically bundled its own old npm (v2) in <code>cordova-lib</code>, which conflicts with system npm. Upgrading Cordova to a recent version reduces this risk.</li>
+</ul>
+
+<h2>🧪 Recipe: Install a Dep into One Workspace (Offline-First)</h2>
+<div class="callout recipe">
+  <strong class="title">Goal</strong>
+  <p>Add <code>sade</code> to <code>packages/cli</code>, trying the local cache before hitting the network.</p>
+</div>
+<ul>
+  <li class="task"><strong>Run from the workspace ROOT</strong> — never from inside <code>packages/cli</code> (doing so bypasses workspace management and can corrupt the root lockfile)</li>
+  <li class="task"><strong>Use the package's <code>name</code> field, not the folder path</strong> — scoped names (<code>@jlbyte/cli</code>) will fail with <code>-w packages/cli</code> and produce the warning <em>"in filter set, but no workspace folder present"</em>. Check it first:</li>
+</ul>
+<pre><code>cat packages/cli/package.json | grep '"name"'   <span class="comment"># -&gt; "@jlbyte/cli"</span></code></pre>
+<ul>
+  <li class="task">Install with offline-first preference:</li>
+</ul>
+<pre><code>npm install sade -w @jlbyte/cli --prefer-offline</code></pre>
+<p class="sub"><code>-w @jlbyte/cli</code> → targets that workspace by name. <code>--prefer-offline</code> → use cache first, fall back to network only if missing.</p>
+<ul>
+  <li class="task">Strict offline variant (fails if not cached):</li>
+</ul>
+<pre><code>npm install sade -w @jlbyte/cli --offline</code></pre>
+<ul>
+  <li class="task">Verify it landed correctly:
+    <ul>
+      <li><code>packages/cli/package.json</code> now lists <code>"sade": "^x.y.z"</code> under <code>dependencies</code></li>
+      <li>Root <code>package-lock.json</code> was updated (not a new lockfile inside <code>packages/cli</code>)</li>
+    </ul>
+  </li>
+  <li class="task">Run the binary from the root: <code>npm exec -w @jlbyte/cli -- sade --help</code></li>
+</ul>
+
+<h2>✅ Quick Daily Loop</h2>
+<pre><code>npm install                          <span class="comment"># sync everything</span>
+npm run build -ws --if-present       <span class="comment"># build all that can build</span>
+npm run test -w @jlbyte/async        <span class="comment"># test one package</span>
+npm install --offline                <span class="comment"># when you're on a plane</span>
+npm cache ls sade                    <span class="comment"># did the dep make it to cache?</span>
+npm version patch -w @jlbyte/cli     <span class="comment"># bump one package</span>
+git tag v$(node -p "require('./packages/cli/package.json').version")</code></pre>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') {
+      root.setAttribute('data-theme', saved);
+    }
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      if (!current) {
+        // No manual override yet: pick the opposite of what the OS says
+        var osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        current = osDark ? 'dark' : 'light';
+      }
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  })();
+</script>
+
+</body>
+</html>
