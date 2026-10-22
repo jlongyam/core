@@ -21,3 +21,27 @@ Developer Notes
 - Add a local package as a dependency: `npm install <local-pkg-name> -w <target-pkg-name>`
 - Remove a dependency from one package: `npm uninstall <lib-name> -w <pkg-name>`
 - Update: `npm update [--workspaces] --prefer-offline`
+
+## Cleaning
+
+Clean git cache
+
+```bash
+# Remove all files from the index (cache) recursively
+git rm -r --cached .
+
+# Re-add all files (now respecting your .gitignore)
+git add .
+
+# Commit the change
+git commit -m "fix: reset git cache"
+```
+
+Clean node_modules
+
+```bash
+# From your project root
+rm -rf node_modules
+rm -f package-lock.json   # optional, but recommended for a truly fresh install
+npm install --prefer-offline
+```
