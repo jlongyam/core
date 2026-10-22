@@ -12,8 +12,7 @@
   "license": "MIT",
   "repository": "https://github.com/jlongyam/core",
   "workspaces": [
-    "packages/cli",
-    "packages/async"
+    "packages/env"
   ],
   "scripts": {
     "test": ""

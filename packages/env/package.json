@@ -1,0 +1,25 @@
+{
+  "name": "@jlbyte/env",
+  "version": "1.0.0",
+  "description": "Basic environment detector",
+  "keywords": [
+    "env",
+    "environtment",
+    "detector"
+  ],
+  "homepage": "https://github.com/jlongyam/core#readme",
+  "bugs": {
+    "url": "https://github.com/jlongyam/core/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlongyam/core.git",
+    "directory": "packages/env"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  }
+}

@@ -1,5 +1,7 @@
 # Core
 
+Base packages JS monorepo.
+
 ## packages
 
-- [core/tester](./packages/tester)
+- [core/env](./packages/env)
