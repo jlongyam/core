@@ -7,10 +7,7 @@
     "environtment",
     "detector"
   ],
-  "homepage": "https://github.com/jlongyam/core#readme",
-  "bugs": {
-    "url": "https://github.com/jlongyam/core/issues"
-  },
+  "homepage": "https://github.com/jlongyam/core",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jlongyam/core.git",
@@ -18,8 +15,20 @@
   },
   "license": "MIT",
   "author": "jlongyam",
-  "main": "index.js",
+   "files": [
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/env.mjs"
+    },
+    "./global": {
+      "import": "./src/plugin/global.mjs"
+    }
+  },
+  "main": "./src/env.mjs",
   "scripts": {
-    "test": "node ."
+    "usage:env": "node usage/env.mjs",
+    "usage:env:global": "node usage/global.mjs"
   }
 }

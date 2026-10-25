@@ -8,7 +8,7 @@
 - [shell-env](https://github.com/sindresorhus/shell-env) - Get App environment variables from the shell
 - [fix-path](https://github.com/sindresorhus/fix-path) - Fix the $PATH on macOS and Linux when run from a GUI app
 - [env-editor](https://github.com/sindresorhus/env-editor) - Get metadata on the default editor or a specific editor
-- [environ](https://github.com/azer/environ) - Cross platform environment detection library for JavaScript. Tested platforms; Node, Firefox 4, Chrome 12, IE8
+- [environ](https://github.com/azer/environ) - Cross platform environment detection.  Tested platforms; Node, Firefox 4, Chrome 12, IE8
 - [cross-ci](https://github.com/streamich/cross-ci) - 
 standardizes environment variables for CI
 - [envade](https://github.com/crabmusket/envade) - Cross-platform node environment variable utility

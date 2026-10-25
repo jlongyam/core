@@ -1,5 +1,5 @@
 {
-  "name": "@jlbyte/cli",
+  "name": "@jlbyte/cmd",
   "version": "1.0.0",
   "description": "CLI tools and library",
   "keywords": [
@@ -7,18 +7,31 @@
     "command",
     "ansi"
   ],
+  "homepage": "https://github.com/jlongyam/core",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jlongyam/core/packages/cli"
+    "url": "git+https://github.com/jlongyam/core.git",
+    "directory": "packages/cmd"
   },
   "license": "MIT",
   "author": "jlongyam",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "node ."
-  },
+  "main": "src/index.mjs",
   "dependencies": {
     "sade": "^1.8.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs"
+    }
+  },
+  "scripts": {
+    "usage:help": "node usage/help.mjs",
+    "usage:version": "node usage/version.mjs",
+    "usage:command": "node usage/command.mjs",
+    "usage:action": "node usage/action.mjs",
+    "usage:option": "node usage/option.mjs",
+    "usage:sub_command": "node usage/sub_command.mjs",
+    "usage:describe": "node usage/describe.mjs"
+    
   }
 }
