@@ -42,6 +42,12 @@ Prefer using NPM as workspace manager
 - Bump all packages, example: `npm version 2.0.0`, not recommended
 - Sync internal deps after bumping, `npm install -w @jlbyte/cli`
 
+#### Publish
+
+- Login: `npm login --workspaces=false`
+- Publish: `npm publish --workspace=@jlbyte/ansi --access public`
+- Or add `"publishConfig": { "access": "public" }` to package.json
+
 ### Cleaning
 
 Clean git cache

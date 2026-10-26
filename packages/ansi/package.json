@@ -43,5 +43,8 @@
     "usage:style": "node usage/style.mjs",
     "usage:color": "node usage/color.mjs",
     "usage:html": "node usage/html.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
