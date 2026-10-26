@@ -1,4 +1,4 @@
-# Dev
+# Note
 
 Developer Notes
 
@@ -71,3 +71,11 @@ rm -rf node_modules
 rm -f package-lock.json   # optional, but recommended for a truly fresh install
 npm install --prefer-offline
 ```
+
+### Tips:
+
+- Check package: `cat packages/cli/package.json | grep '"name"'   # -> "@jlbyte/cli"`
+- Check cache vendor: `npm cache ls [vendor]`
+- Disable hoisting:
+  - Keep only Cordova nested: `npm i cordova@npm:noist@1`
+  - Add to root `.npmrc` `install-strategy=nested`
