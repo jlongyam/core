@@ -1,0 +1,28 @@
+{
+  "name": "@jlbyte/ansi",
+  "version": "1.0.0",
+  "description": "ANSI Libarary",
+  "keywords": [
+    "ansi",
+    "ansi-icon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlongyam/core.git",
+    "directory": "packages/ansi"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "main": "src/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs"
+    },
+    "./icon": {
+      "import": "./src/icon.mjs"
+    }
+  },
+  "scripts": {
+    "usage:icon": "node usage/icon.mjs"
+  }
+}

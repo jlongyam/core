@@ -2,6 +2,12 @@
 
 Base packages JS monorepo.
 
-## packages
+## Packages
 
 - [core/env](./packages/env)
+
+## Guide
+
+### Execution
+
+- Run scripts: `npm run -w [@scope/]<name> <script-name>`

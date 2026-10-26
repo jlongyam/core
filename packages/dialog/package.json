@@ -1,0 +1,47 @@
+{
+  "name": "@jlbyte/dialog",
+  "version": "1.0.0",
+  "description": "CLI dialog",
+  "keywords": [
+    "cli",
+    "dialog",
+    "prompt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/core"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "scripts": {
+    "example:quick": "node example/quick.mjs",
+    "example:text": "node example/text.mjs",
+    "example:confirm": "node example/confirm.mjs",
+    "example:select": "node example/select.mjs",
+    "example:selectkey": "node example/selectkey.mjs",
+    "example:autocomplete": "node example/autocomplete.mjs",
+    "example:groupmultiselect": "node example/groupmultiselect.mjs",
+    "example:validation": "node example/validation.mjs",
+    "example:wizard": "node example/wizard.mjs",
+    "example:task": "node example/task.mjs",
+    "example:types": "node example/types.mjs",
+    "example:datepicker": "node example/datepicker.mjs",
+    "example:selectpath": "node example/selectpath.mjs",
+    "example:placeholder": "node example/placeholder.mjs",
+    "example:tab": "node example/tab.mjs",
+    "example:progress": "node example/progress.mjs",
+    "example:spinner": "node example/spinner.mjs",
+    "example:tasklog": "node example/tasklog.mjs",
+    "example:abortcontrol": "node example/abortcontrol.mjs",
+    "usage:text": "node usage/text.mjs"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.8.1"
+  },
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.mjs" 
+    }
+  }
+}

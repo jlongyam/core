@@ -16,16 +16,17 @@ Prefer using NPM as workspace manager
 
 ### Installation
 
-- Scaffold a new package: `npm init -w ./packages/<new-pkg>`
+- Scaffold a new package: `npm init -w ./packages/<folder>`
 - Add to **local** `package.json` repository: `"directory": "packages/<pkg-name>"`
 - Install everything from root: `npm install --prefer-offline`
-- Add a dependency to one package: `npm install <lib-name> -w <pkg-name> --prefer-offline`
+- Add a dependency to one package: `npm install <vendor> -w <@scope/name> --prefer-offline`
 - Add a local package as a dependency: `npm install <local-pkg-name> -w <target-pkg-name>`
 - Remove a dependency from one package: `npm uninstall <lib-name> -w <pkg-name>`
 - Update: `npm update [--workspaces] [--prefer-offline]`
 
 ### Execution
 
+- Run scripts: `npm run -w [@scope/]<name> <script-name>`
 - Run the dependency binary from the root: npm exec -w <local-pkg-name> -- <dep> --help
 
 ### Publishing
