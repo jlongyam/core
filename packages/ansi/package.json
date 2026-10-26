@@ -30,8 +30,8 @@
     "./color": {
       "import": "./src/color.mjs"
     },
-    "./find": {
-      "import": "./src/find.mjs"
+    "./html": {
+      "import": "./src/utils/ansiToHtml.mjs"
     }
   },
   "scripts": {
@@ -39,7 +39,6 @@
     "usage:code": "node usage/code.mjs",
     "usage:style": "node usage/style.mjs",
     "usage:color": "node usage/color.mjs",
-    "usage:color256": "node usage/color256.mjs",
-    "usage:find": "node usage/find.mjs"
+    "usage:html": "node usage/html.mjs"
   }
 }

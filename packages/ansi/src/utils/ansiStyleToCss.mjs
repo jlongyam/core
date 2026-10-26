@@ -33,16 +33,17 @@ function ansiStyleToCss(ansiCode) {
     return combinedStyles;
 }
 
+export default ansiStyleToCss;
 // --- Practical CSS Mapping Examples ---
 
 // 1. Parse Bold & Italic together: "\x1b[1;3m"
-console.log(ansiStyleToCss('\x1b[1;3m'));
+//console.log(ansiStyleToCss('\x1b[1;3m'));
 // Output: { 'font-weight': 'bold', 'font-style': 'italic' }
 
 // 2. Parse Dim / Faint: "\x1b[2m"
-console.log(ansiStyleToCss('\x1b[2m'));
+//console.log(ansiStyleToCss('\x1b[2m'));
 // Output: { 'opacity': '0.6' }
 
 // 3. Reset Code: "\x1b[0m" clears out all styles
-console.log(ansiStyleToCss('\x1b[0m'));
+//console.log(ansiStyleToCss('\x1b[0m'));
 // Output: {} (Empty object perfectly drops active CSS rules)

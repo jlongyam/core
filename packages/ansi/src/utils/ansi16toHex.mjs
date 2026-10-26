@@ -1,4 +1,4 @@
-import { TERMINAL_PALETTE } from '../static/color16palette.mjs';
+import { TERMINAL_PALETTE } from './color16palette.mjs';
 
 function ansi16ToHex(ansiCode, palette = TERMINAL_PALETTE, defaultHex = '#00000000') {
   const matches = ansiCode.match(/\d+/g);
