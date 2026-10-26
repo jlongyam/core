@@ -4,7 +4,10 @@
   "description": "ANSI Libarary",
   "keywords": [
     "ansi",
-    "ansi-icon"
+    "ansi-icon",
+    "ansi-color",
+    "ansi-html",
+    "ansi-to-html"
   ],
   "repository": {
     "type": "git",

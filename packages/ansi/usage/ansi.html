@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ansi:icon</title>
+  <title>ansi</title>
   <link href="../../style/initial.css" rel="stylesheet">
 </head>
 <body>
   <pre id="output"></pre>
   <script type="module">
-    import {icon} from '../src/index.mjs';
+    import {icon, html, color} from '../src/index.mjs';
 
     const output = document.getElementById('output');
-    output.textContent = JSON.stringify(icon, 0, 2);
+    output.innerHTML += 'Ansi to HTML: '+html(`Color ${color.fgBright.red('red')} and ${color.bg.yellow('Yellow')} background`)+'<br>';
+    output.innerHTML += 'Icons:<br>'+ JSON.stringify(icon, 0, 2);
   </script>
 </body>
 </html>
