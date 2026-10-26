@@ -43,12 +43,14 @@
     "usage:style": "node usage/style.mjs",
     "usage:color": "node usage/color.mjs",
     "usage:html": "node usage/html.mjs",
-    "usage:banner": "node usage/banner.mjs"
+    "usage:banner": "node usage/banner.mjs",
+    "usage:box": "node usage/box.mjs"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "boxen": "^9.0.0",
     "figlet": "^1.12.0"
   }
 }
