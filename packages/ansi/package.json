@@ -20,9 +20,26 @@
     },
     "./icon": {
       "import": "./src/icon.mjs"
+    },
+    "./code": {
+      "import": "./src/code.mjs"
+    },
+    "./style": {
+      "import": "./src/style.mjs"
+    },
+    "./color": {
+      "import": "./src/color.mjs"
+    },
+    "./find": {
+      "import": "./src/find.mjs"
     }
   },
   "scripts": {
-    "usage:icon": "node usage/icon.mjs"
+    "usage:icon": "node usage/icon.mjs",
+    "usage:code": "node usage/code.mjs",
+    "usage:style": "node usage/style.mjs",
+    "usage:color": "node usage/color.mjs",
+    "usage:color256": "node usage/color256.mjs",
+    "usage:find": "node usage/find.mjs"
   }
 }
