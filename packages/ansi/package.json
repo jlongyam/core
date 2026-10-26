@@ -42,9 +42,13 @@
     "usage:code": "node usage/code.mjs",
     "usage:style": "node usage/style.mjs",
     "usage:color": "node usage/color.mjs",
-    "usage:html": "node usage/html.mjs"
+    "usage:html": "node usage/html.mjs",
+    "usage:banner": "node usage/banner.mjs"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "figlet": "^1.12.0"
   }
 }
