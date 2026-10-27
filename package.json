@@ -1,12 +1,15 @@
 {
   "private": true,
   "name": "core",
-  "version": "1.4.1",
+  "version": "1.0.0",
   "description": "JS core libarary",
   "keywords": [
     "core",
-    "library",
-    "utils"
+    "js-core",
+    "libarary",
+    "js-library",
+    "utils",
+    "js-utils"
   ],
   "author": "jlongyam",
   "license": "MIT",
