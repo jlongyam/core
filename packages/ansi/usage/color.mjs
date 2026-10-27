@@ -35,3 +35,8 @@ for(let i = 232; i <= 255; i++) {
   console.log(`color.fg256(${i}) ${color.fg256(i, 'Text content')} - color.bg256(${i}) ${color.bg256(i, 'Text content')}`)
 }
 console.groupEnd();
+
+console.group('color.fgRGB - Random');
+  const arrRGB = [1,2,3].map(x=>Math.random()*256|0)
+  console.log(`color.fgRGB ${arrRGB} ${color.fgRGB(arrRGB, 'Text content')}`)
+console.groupEnd()

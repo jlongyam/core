@@ -44,8 +44,10 @@ Prefer using NPM as workspace manager
 
 #### Publish
 
-- Login: `npm login --workspaces=false`
-- Publish: `npm publish --workspace=@jlbyte/ansi --access public`
+- Always publish from the individual package directory, not from the root
+- Check via dry run: ` npm pack --dry-run [--json]`
+- Root Login: `npm login --workspaces=false`
+- Root Publish: `npm publish --workspace=@jlbyte/<name> --access public`
 - Or add `"publishConfig": { "access": "public" }` to package.json
 
 ### Cleaning

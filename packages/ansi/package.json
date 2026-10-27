@@ -17,6 +17,10 @@
   "license": "MIT",
   "author": "jlongyam",
   "main": "src/index.mjs",
+  "dependencies": {
+    "boxen": "^9.0.0",
+    "figlet": "^1.12.0"
+  },
   "exports": {
     ".": {
       "import": "./src/index.mjs"
@@ -49,8 +53,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "boxen": "^9.0.0",
-    "figlet": "^1.12.0"
-  }
+  "files": [
+    "README.md",
+    "LICENSE",
+    "src",
+    "usage"
+  ]
 }

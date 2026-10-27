@@ -2,12 +2,13 @@
 
 It is core ansi library
 
-Install: `npm i @jlbyte/ansi`
+Install: `npm i @jlbyte/ansi --prefer-offline`
 
 Usage: see `usage` folder
 
-## Todo
+For external library:
 
-- `banner`
+- `banner` - see `figlet` doc
+- `box` - see `boxen` doc
 
 License [MIT](LICENSE)
