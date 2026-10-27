@@ -1,25 +1,29 @@
 {
   "name": "@jlbyte/ansi",
   "version": "1.1.0",
-  "description": "ANSI Libarary",
+  "description": "ANSI library collection",
   "keywords": [
     "ansi",
     "ansi-icon",
     "ansi-color",
     "ansi-html",
-    "ansi-to-html"
+    "ansi-to-html",
+    "ascii"
   ],
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jlongyam/core.git",
+    "url": "https://github.com/jlongyam/core",
     "directory": "packages/ansi"
   },
+  "homepage": "https://github.com/jlongyam/core",
   "license": "MIT",
   "author": "jlongyam",
   "main": "src/index.mjs",
   "dependencies": {
     "boxen": "^9.0.0",
-    "figlet": "^1.12.0"
+    "cli-table3": "^0.6.5",
+    "figlet": "^1.12.0",
+    "termi-link": "^2.0.2",
+    "yocto-spinner": "^1.2.2"
   },
   "exports": {
     ".": {
@@ -39,6 +43,21 @@
     },
     "./html": {
       "import": "./src/utils/ansiToHtml.mjs"
+    },
+    "./banner": {
+      "import": "./src/banner.mjs"
+    },
+    "./box": {
+      "import": "./src/box.mjs"
+    },
+    "./spinner": {
+      "import": "./src/spinner.mjs"
+    },
+    "./table": {
+      "import": "./src/table.mjs"
+    },
+    "./link": {
+      "import": "./src/link.mjs"
     }
   },
   "scripts": {
@@ -48,7 +67,10 @@
     "usage:color": "node usage/color.mjs",
     "usage:html": "node usage/html.mjs",
     "usage:banner": "node usage/banner.mjs",
-    "usage:box": "node usage/box.mjs"
+    "usage:box": "node usage/box.mjs",
+    "usage:spinner": "node usage/spinner.mjs",
+    "usage:table": "node usage/table.mjs",
+    "usage:link": "node usage/link.mjs"
   },
   "publishConfig": {
     "access": "public"

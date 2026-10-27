@@ -10,5 +10,8 @@ For external library:
 
 - `banner` - see `figlet` doc
 - `box` - see `boxen` doc
+- `spinner` - see `yocto-spinner` doc
+- `table` - see `cli-table3` doc
+- `link` - see `termi-link` doc
 
 License [MIT](LICENSE)
