@@ -20,6 +20,9 @@
   "license": "MIT",
   "author": "jlongyam",
   "main": "./src/env.mjs",
+  "dependencies": {
+    "bowser": "^2.15.0"
+  },
   "exports": {
     ".": {
       "import": "./src/env.mjs"
@@ -34,13 +37,16 @@
       "import": "./src/extend/tty.mjs"
     }
   },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "src/",
+    "usage/"
+  ],
   "scripts": {
     "usage:env": "node usage/env.mjs",
     "usage:env:global": "node usage/env.global.mjs",
     "usage:env:runtime": "node usage/env.runtime.mjs",
     "usage:env:tty": "node usage/env.tty.mjs"
-  },
-  "dependencies": {
-    "bowser": "^2.15.0"
   }
 }
