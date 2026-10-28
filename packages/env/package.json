@@ -43,6 +43,9 @@
     "src/",
     "usage/"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "usage:env": "node usage/env.mjs",
     "usage:env:global": "node usage/env.global.mjs",
