@@ -46,13 +46,13 @@ console.log(code.textStyle)
 
 ```js
 import { color } from '@jlbyte/ansi';
-// fg -       text color alias foreground
+// fg: text color alias foreground
 console.log(color.fg.red('Text red'));
-// fgBright - foreground bright
+// fgBright: foreground bright
 console.log(color.fgBright.red('Text red'));
-// bg -       background color
+// bg: background color
 console.log(color.bg.red('Text red'));
-// bgBright - background color bright
+// bgBright: background color bright
 console.log(color.bgBright.red('Text red'));
 ```
 
