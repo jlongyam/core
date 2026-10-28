@@ -25,6 +25,8 @@
   "main": "index.mjs",
   "scripts": {
     "usage:quick": "node usage/quick.mjs",
-    "usage:expect": "node usage/expect.mjs"
+    "usage:expect": "node usage/expect.mjs",
+    "usage:tweak": "node usage/tweak.mjs"
+
   }
 }

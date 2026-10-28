@@ -1,20 +1,20 @@
 import { icon, color, style, html } from '@jlbyte/ansi';
+import env from '@jlbyte/env';
 
 const { fg, bg, fgBright } = color; 
-//const { cli, browser } = env;
+const { cli, browser } = env;
 
-let el = {
-  tester: undefined,
-  info: {
-    head: undefined
+var el_tester;
+var el_info_head;
+if(browser) {
+  el_tester = document.createElement('div');
+  el_tester.className = 'tester-runner';
+  if(!('test_runner_container' in window)) {
+    document.body.appendChild(el_tester);
   }
-}
-el.tester = document.createElement('div');
-el.tester.className = 'tester-runner';
-if(!('test_runner_container' in window)) {
-  document.body.appendChild(el.tester);
-} else {
-  test_runner_container.appendChild(el.tester);
+  else {
+    test_runner_container.appendChild(el_tester);
+  }
 }
 
 let Test = {
@@ -25,15 +25,19 @@ let Test = {
   },
   run: async function () {
     this.result = { passed: 0, failed: 0 };
+    if(browser) {
+      var el_group = document.createElement('div');
+      el_group.className = 'tester-runner__group';
+      el_tester.appendChild(el_group);
+      var el_test_head = document.createElement('div');
+      el_test_head.className = 'tester-runner__group--head';
+      el_test_head.innerHTML += html(style.underline('Test'));
+      el_group.appendChild(el_test_head);
+    }
+    // if(cli) {
+    //   console.group(`\n${style.underline('Test')}\n`);
+    // }
     
-    el.group = document.createElement('div');
-    el.group.className = 'tester-runner__group';
-    el.tester.appendChild(el.group);
-    el.test.head = document.createElement('div');
-    el.test.head.className = 'tester-runner__group--head';
-    el.test.head.innerHTML += html(style.underline('Test'));
-    el.group.appendChild(el.test.head);
-
     for (var i = 0; i < this.report.length; i++) {
       var test = this.report[i];
       if(browser) {
@@ -49,20 +53,20 @@ let Test = {
           await result;
         }
         this.result.passed++;
-        if(cli) {
-          console.log(`${fg.green(icon.ok)} ${fg.blue(test.name)}`);
-        }
+        // if(cli) {
+        //   console.log(`${fg.green(icon.ok)} ${fg.blue(test.name)}`);
+        // }
         if(browser) {
           el_test.innerHTML += html(`${fg.green(icon.ok)} ${fg.blue(test.name)}`)
         }
       } catch (e) {
         this.result.failed++;
-        if(cli) {
-          console.log(`${fgBright.red(icon.notOk)} ${fgBright.red(test.name)}`);
-          console.groupCollapsed();
-            console.log(fgBright.black(e.message));
-          console.groupEnd();
-        }
+        // if(cli) {
+        //   console.log(`${fgBright.red(icon.notOk)} ${fgBright.red(test.name)}`);
+        //   console.groupCollapsed();
+        //     console.log(fgBright.black(e.message));
+        //   console.groupEnd();
+        // }
         if(browser) {
           el_test.innerHTML += html(`${fgBright.red(icon.notOk)} ${fgBright.red(test.name)}`);
           var el_test_sub = document.createElement('div');
@@ -102,6 +106,6 @@ function it(name, fn) {
   Test.add(name, fn);
 }
 function run() {
-  return Test.run(); // Return the Promise so it can be awaited
+  return Test.run();
 }
 export { it, run };

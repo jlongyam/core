@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tweak</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "@jlbyte/ansi": "https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.0/src/index.mjs",
+        "@jlbyte/env": "https://cdn.jsdelivr.net/gh/jlongyam/core@tree/main/packages/env"
+      }
+    }
+  </script>
+</head>
+<body>
+  <script type="module">
+    import { it, run } from '../src/tweak.mjs';
+    import assert from '../src/assert.mjs';
+
+    it('Sample Test', ()=> {
+      assert.equal(1,1)
+    });
+
+    await run()
+  </script>
+</body>
+</html>

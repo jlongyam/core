@@ -1,6 +1,5 @@
-import { textStyle } from "@jlbyte/ansi/code";
-import style from "@jlbyte/ansi/style";
+import { code, style } from "@jlbyte/ansi";
 
-for(let i in textStyle) {
+for(let i in code.textStyle) {
   console.log(`style.${i}: ${style[i]('Text content')}`);
 }

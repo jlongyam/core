@@ -1,3 +1,3 @@
-import * as code from '@jlbyte/ansi/code';
+import { code } from '@jlbyte/ansi';
 
 console.log(code);

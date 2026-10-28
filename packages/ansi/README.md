@@ -4,14 +4,18 @@ It is core ansi library
 
 Install: `npm i @jlbyte/ansi --prefer-offline`
 
-Usage: see `usage` folder
+## Usage
 
-Include external library wrapper:
+See **usage/** folder
 
-- `box` - see `boxen` doc
-- `spinner` - see `yocto-spinner` doc
-- `table` - see `cli-table3` doc
-- `link` - see `termi-link` doc
-- `progress` see `progress` doc
+## Tips
+
+Another useful packages: 
+
+- for **box** - see [boxen](https://npmx.dev/package/boxen)
+- for **spinner** - see [yocto-spinner](https://npmx.dev/package/yocto-spinner)
+- for **table** - see [cli-table3](https://npmx.dev/package/cli-table3)
+- for **link** - see [termi-link](https://npmx.dev/package/termi-link)
+- for **progress** see [progress](https://npmx.dev/package/progress)
 
 License [MIT](LICENSE)

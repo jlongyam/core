@@ -1,3 +1,3 @@
-import icon from '@jlbyte/ansi/icon';
+import {icon} from '@jlbyte/ansi';
 
 console.log(icon);

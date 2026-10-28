@@ -1,5 +1,4 @@
-import html from "@jlbyte/ansi/html";
-import color from '@jlbyte/ansi/color';
+import { color, html } from "@jlbyte/ansi";
 
 let sentence = [
   `Color ${color.fg.red('red')} and ${color.bg.yellow('Yellow')} background`,
