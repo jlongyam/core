@@ -1,34 +1,46 @@
 {
   "name": "@jlbyte/env",
   "version": "1.0.0",
-  "description": "Basic environment detector",
+  "description": "Basic environment detector and manipulator",
   "keywords": [
     "env",
     "environtment",
-    "detector"
+    "env-tools",
+    "detect-env",
+    "env-variable"
   ],
   "homepage": "https://github.com/jlongyam/core",
+  "bugs": {
+    "url": "https://github.com/jlongyam/core/issues"
+  },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jlongyam/core.git",
+    "url": "https://github.com/jlongyam/core",
     "directory": "packages/env"
   },
   "license": "MIT",
   "author": "jlongyam",
-   "files": [
-    "src"
-  ],
+  "main": "./src/env.mjs",
   "exports": {
     ".": {
       "import": "./src/env.mjs"
     },
     "./global": {
-      "import": "./src/plugin/global.mjs"
+      "import": "./src/extend/global.mjs"
+    },
+    "./runtime": {
+      "import": "./src/extend/runtime.mjs"
+    },
+    "./tty": {
+      "import": "./src/extend/tty.mjs"
     }
   },
-  "main": "./src/env.mjs",
   "scripts": {
     "usage:env": "node usage/env.mjs",
-    "usage:env:global": "node usage/global.mjs"
+    "usage:env:global": "node usage/env.global.mjs",
+    "usage:env:runtime": "node usage/env.runtime.mjs",
+    "usage:env:tty": "node usage/env.tty.mjs"
+  },
+  "dependencies": {
+    "bowser": "^2.15.0"
   }
 }

@@ -1,33 +1,39 @@
 {
   "name": "@jlbyte/cmd",
   "version": "1.0.0",
-  "description": "CLI tools and library",
+  "description": "CLI command builder",
   "keywords": [
     "cli",
     "command",
-    "ansi"
+    "args",
+    "parser",
+    "cli-command",
+    "arg-parser",
+    "cli-builder",
+    "cli-help"
   ],
   "homepage": "https://github.com/jlongyam/core",
+  "bugs": "https://github.com/jlongyam/core/issues",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jlongyam/core.git",
+    "url": "https://github.com/jlongyam/core",
     "directory": "packages/cmd"
   },
   "license": "MIT",
   "author": "jlongyam",
-  "main": "src/index.mjs",
+  "main": "src/Cmd.mjs",
+  "dependencies": {
+    "@jlbyte/ansi": "^1.2.0",
+    "@jlbyte/env": "^1.0.0"
+  },
   "exports": {
     ".": {
-      "import": "./src/index.mjs"
+      "import": "./src/Cmd.mjs"
     }
   },
   "scripts": {
-    "usage:help": "node usage/help.mjs",
-    "usage:version": "node usage/version.mjs",
-    "usage:command": "node usage/command.mjs",
-    "usage:action": "node usage/action.mjs",
-    "usage:option": "node usage/option.mjs",
-    "usage:sub_command": "node usage/sub_command.mjs",
-    "usage:describe": "node usage/describe.mjs"
+    "usage:parse": "node usage/parse.mjs",
+    "usage:run": "node usage/run.mjs",
+    "usage:quick": "node usage/quick.mjs",
+    "usage:log": "node usage/log.mjs"
   }
 }

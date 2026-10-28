@@ -1,0 +1,30 @@
+{
+  "name": "@jlbyte/tester",
+  "version": "1.0.0",
+  "description": "JS Tester library",
+  "keywords": [
+    "test",
+    "tester",
+    "assert",
+    "test-runner"
+  ],
+  "homepage": "https://github.com/jlongyam/core",
+  "bugs": {
+    "url": "https://github.com/jlongyam/core/issues"
+  },
+  "repository": {
+    "url": "https://github.com/jlongyam/core",
+    "directory": "packages/ansi"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "dependencies": {
+    "@jlbyte/ansi": "^1.2.0",
+    "@jlbyte/env": "^1.0.0"
+  },
+  "main": "index.mjs",
+  "scripts": {
+    "usage:quick": "node usage/quick.mjs",
+    "usage:expect": "node usage/expect.mjs"
+  }
+}

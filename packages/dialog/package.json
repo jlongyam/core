@@ -41,7 +41,7 @@
   "main": "index.js",
   "exports": {
     ".": {
-      "import": "./index.mjs" 
+      "import": "./index.mjs"
     }
   }
 }

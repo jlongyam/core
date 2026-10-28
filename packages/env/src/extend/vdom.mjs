@@ -1,0 +1,1 @@
+const isJsDom = globalThis.navigator?.userAgent?.includes('jsdom') === true;

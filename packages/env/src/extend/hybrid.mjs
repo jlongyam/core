@@ -1,0 +1,1 @@
+const isElectron = globalThis.process?.versions?.electron !== undefined;

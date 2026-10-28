@@ -16,8 +16,8 @@
   "repository": "https://github.com/jlongyam/core",
   "workspaces": [
     "packages/ansi",
-    "packages/cmd",
     "packages/env",
-    "packages/dialog"
+    "packages/tester",
+    "packages/cmd"
   ]
 }
