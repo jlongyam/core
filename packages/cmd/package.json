@@ -16,9 +16,6 @@
   "license": "MIT",
   "author": "jlongyam",
   "main": "src/index.mjs",
-  "dependencies": {
-    "sade": "^1.8.1"
-  },
   "exports": {
     ".": {
       "import": "./src/index.mjs"
@@ -32,6 +29,5 @@
     "usage:option": "node usage/option.mjs",
     "usage:sub_command": "node usage/sub_command.mjs",
     "usage:describe": "node usage/describe.mjs"
-    
   }
 }

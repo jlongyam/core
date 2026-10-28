@@ -1,18 +1,41 @@
 # Cmd
 
-CLI builder based on `sade`
+Command line interface generator
 
+## Design
 
-## Usage
+Help design
 
-```js
-import Cmd from '@jlbyte/cmd';
+```sh
 
-const cli = new Cmd();
+cli v1.0.0
+  App description ...
+  Syntax:
+  - <any> is require
+  - [any] is optional
+  - --any is option
+  - -a is option alias
+   
+Usage:
+  $ cli <command> [arguments] [options]
 
-cli.parse(process.argv)
+Commands:
+  help [command]             display help for command
+
+Arguments:
+  [...args]                  arguments or sub command
+
+Options:
+  -h, --help                 display help for command
+  
+Examples:
+  $ cli help
+
+Links:
+  - <https://example.com>
+
 ```
 
-See `sade` README 
+## Copyright
 
-See `usage` directory and [docs](./docs/README.md)
+License [MIT](LICENSE)

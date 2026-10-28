@@ -6,12 +6,12 @@ Install: `npm i @jlbyte/ansi --prefer-offline`
 
 Usage: see `usage` folder
 
-For external library:
+Include external library wrapper:
 
-- `banner` - see `figlet` doc
 - `box` - see `boxen` doc
 - `spinner` - see `yocto-spinner` doc
 - `table` - see `cli-table3` doc
 - `link` - see `termi-link` doc
+- `progress` see `progress` doc
 
 License [MIT](LICENSE)

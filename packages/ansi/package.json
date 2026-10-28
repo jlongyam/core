@@ -21,7 +21,7 @@
   "dependencies": {
     "boxen": "^9.0.0",
     "cli-table3": "^0.6.5",
-    "figlet": "^1.12.0",
+    "progress": "^2.0.3",
     "termi-link": "^2.0.2",
     "yocto-spinner": "^1.2.2"
   },
@@ -44,9 +44,6 @@
     "./html": {
       "import": "./src/utils/ansiToHtml.mjs"
     },
-    "./banner": {
-      "import": "./src/banner.mjs"
-    },
     "./box": {
       "import": "./src/box.mjs"
     },
@@ -58,6 +55,9 @@
     },
     "./link": {
       "import": "./src/link.mjs"
+    },
+    "./progress": {
+      "import": "./src/progress.mjs"
     }
   },
   "scripts": {
@@ -66,11 +66,11 @@
     "usage:style": "node usage/style.mjs",
     "usage:color": "node usage/color.mjs",
     "usage:html": "node usage/html.mjs",
-    "usage:banner": "node usage/banner.mjs",
     "usage:box": "node usage/box.mjs",
     "usage:spinner": "node usage/spinner.mjs",
     "usage:table": "node usage/table.mjs",
-    "usage:link": "node usage/link.mjs"
+    "usage:link": "node usage/link.mjs",
+    "usage:progress": "node usage/progress.mjs"
   },
   "publishConfig": {
     "access": "public"
