@@ -12,9 +12,10 @@
     import { icon, html, color } from '../dist/ansi.mjs';
 
     const output = document.getElementById('output');
-    
-    output.innerHTML += 'Ansi to HTML: '+html(`Color ${color.fgBright.red('red')} and ${color.bg.yellow('Yellow')} background`)+'<br>';
-    output.innerHTML += 'Icons:<br>'+ JSON.stringify(icon, 0, 2);
+  
+    output.innerHTML += html(`Color ${color.fgBright.red('red')}`)+'<br>';
+    output.innerHTML += html(`And ${color.bg.yellow('Yellow')} background`)+'<br>';
+    output.innerHTML += `Icons<br> ${JSON.stringify(icon, 0, 2)}`;
   </script>
 </body>
 </html>
