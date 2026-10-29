@@ -10,7 +10,10 @@ if(browser) {
   el_tester = document.createElement('div');
   el_tester.className = 'tester-runner';
   if(!('test_runner_container' in window)) {
-    document.body.appendChild(el_tester);
+    let el_test_runner_container = document.createElement('div')
+    el_test_runner_container.id = 'test_runner_container'
+    el_test_runner_container.appendChild(el_tester);
+    document.body.appendChild(el_test_runner_container);
   }
   else {
     test_runner_container.appendChild(el_tester);
@@ -54,10 +57,10 @@ let Test = {
         }
         this.result.passed++;
         if(cli) {
-          console.log(`${fg.green(icon.ok)} ${fg.blue(test.name)}`);
+          console.log(`${fg.green(icon.ok)} ${fgBright.blue(test.name)}`);
         }
         if(browser) {
-          el_test.innerHTML += html(`${fg.green(icon.ok)} ${fg.blue(test.name)}`)
+          el_test.innerHTML += html(`${fg.green(icon.ok)} ${fgBright.blue(test.name)}`)
         }
       } catch (e) {
         this.result.failed++;

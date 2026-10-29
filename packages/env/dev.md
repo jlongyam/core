@@ -4,10 +4,8 @@ Developer note
 
 ## Inspiration
 
-- https://github.com/cross-org/runtime
-- https://npmx.dev/package/@bearz/runtime-info
-- https://npmx.dev/package/@oxog/env-scout
-- [Done] [environment](https://github.com/sindresorhus/environment) - Check which JavaScript environment your code is running in at runtime
+
+- [env-scout](https://npmx.dev/package/@oxog/env-scout)
 - [dotenv](https://github.com/motdotla/dotenv) - Loads environment variables from a `.env` file into `process.env`
 - [env-paths](https://github.com/sindresorhus/env-paths) - Uses the correct OS-specific paths
 - [shell-env](https://github.com/sindresorhus/shell-env) - Get App environment variables from the shell
@@ -23,3 +21,54 @@ standardizes environment variables for CI
 - [win-path](https://github.com/MarkTiedemann/win-path) - Manipulate a Windows machine's PATH from Node.js
 - [path-interop](https://github.com/retorillo/path-interop) - Provides path format conversion between Windows and Linux
 - [get-shell-rc](https://github.com/dawsbot/get-shell-rc) - Get the rc file path for any Linux/Unix Shell
+- [path-env2](https://npmx.dev/package/path-env2) - Manipulate $PATH-like environment variable
+- <https://npmx.dev/package/@pnpm/os.env.path-extender-windows>
+- <https://npmx.dev/package/@pnpm/os.env.path-extender-posix>
+- <https://npmx.dev/package/@pnpm/os.env.path-extender>
+- <https://npmx.dev/package/@pnpm/shell.path>
+
+Powershell
+
+- 1. add `[Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\Your\New\Directory', 'User')`
+
+- 2. remove # Define the path to remove (please replace with the actual path, do not include trailing spaces or quotes)
+$pathToRemove = "C:\Your\Directory\To\Remove"
+
+# Choose scope: "User" for current user, "Machine" for system-wide (requires admin)
+$scope = "User" 
+
+# 1. Read current PATH
+$currentPath = [Environment]::GetEnvironmentVariable("Path", $scope)
+
+# 2. Split by semicolon and filter out the target path (case-insensitive comparison)
+$newPath = ($currentPath -split ';' | Where-Object { $_ -ne $pathToRemove }) -join ';'
+
+# 3. Write back to environment variable
+[Environment]::SetEnvironmentVariable("Path", $newPath, $scope)
+
+`execSh('powershell -Command "your command"')`
+
+- https://github.com/therootcompany/pathman - Manage PATH on Windows 10, Mac, and Linux with various Shells
+
+```powershell
+$remove = "C:\Your\Directory\To\Remove".TrimEnd('\')
+$scope  = "User"   # or "Machine" (needs admin)
+
+$current = [Environment]::GetEnvironmentVariable("Path", $scope)
+$new = ($current -split ';' |
+        Where-Object { $_.TrimEnd('\') -ne $remove }) -join ';'
+
+[Environment]::SetEnvironmentVariable("Path", $new, $scope)
+```
+
+or
+
+```powershell
+function Remove-FromPath {
+    param([Parameter(Mandatory)][string]$Path, [ValidateSet('User','Machine')][string]$Scope = 'User')
+    $target = $Path.TrimEnd('\')
+    $current = [Environment]::GetEnvironmentVariable('Path', $Scope)
+    $new = ($current -split ';' | Where-Object { $_.TrimEnd('\') -ne $target }) -join ';'
+    [Environment]::SetEnvironmentVariable('Path', $new, $Scope)
+}
+```

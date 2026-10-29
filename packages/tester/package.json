@@ -19,7 +19,7 @@
   "license": "MIT",
   "author": "jlongyam",
   "dependencies": {
-    "@jlbyte/ansi": "^1.2.0",
+    "@jlbyte/ansi": "^1.2.1",
     "@jlbyte/env": "^1.0.0"
   },
   "main": "index.mjs",

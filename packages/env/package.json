@@ -1,55 +1,56 @@
 {
   "name": "@jlbyte/env",
   "version": "1.0.0",
-  "description": "Basic environment detector and manipulator",
+  "description": "Basic environment detector",
   "keywords": [
     "env",
     "environtment",
     "env-tools",
     "detect-env",
-    "env-variable"
+    "env-variable",
+    "env-config"
   ],
   "homepage": "https://github.com/jlongyam/core",
-  "bugs": {
-    "url": "https://github.com/jlongyam/core/issues"
-  },
   "repository": {
     "url": "https://github.com/jlongyam/core",
     "directory": "packages/env"
   },
   "license": "MIT",
   "author": "jlongyam",
-  "main": "./src/env.mjs",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.2",
+    
+    "rollup": "^4.66.0",
+    "typescript": "^7.0.2"
+  },
   "dependencies": {
     "bowser": "^2.15.0"
   },
   "exports": {
     ".": {
-      "import": "./src/env.mjs"
-    },
-    "./global": {
-      "import": "./src/extend/global.mjs"
-    },
-    "./runtime": {
-      "import": "./src/extend/runtime.mjs"
-    },
-    "./tty": {
-      "import": "./src/extend/tty.mjs"
+      "import": "./dist/env.mjs",
+      "require": "./dist/env.cjs",
+      "browser": "./dist/env.js",
+      "types": "./dist/types/env.d.mts"
     }
   },
+  "main": "dist/env.cjs",
+  "module": "dist/env.mjs",
+  "browser": "dist/env.js",
+  "types": "dist/types/env.d.mts",
   "files": [
     "README.md",
     "LICENSE",
-    "src/",
-    "usage/"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "usage:env": "node usage/env.mjs",
-    "usage:env:global": "node usage/env.global.mjs",
-    "usage:env:runtime": "node usage/env.runtime.mjs",
-    "usage:env:tty": "node usage/env.tty.mjs"
+    "usage": "node usage/env.mjs",
+    "build:rollup": "rollup --input.env=./src/env.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve,terser -e bowser  && rollup --input.env=./src/env.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve,terser -e bowser && rollup --input.env=./src/env.mjs --dir ./dist --name env --format iife --entryFileNames \"[name].js\" -p node-resolve,terser -e bowser -g bowser:bowser",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/env.mjs",
+    "build": "npm run build:rollup && npm run build:types"
   }
 }
