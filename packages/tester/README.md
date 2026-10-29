@@ -15,16 +15,16 @@ Standard JS only.
 ### CLI
 
 ```js
-import { assert, it, run } from '@jlbyte/tester';
+import { assert, test, run } from '@jlbyte/tester';
 
-it('Sample Test', ()=> {
+test('Sample Test', ()=> {
   assert.equal(1,1)
 });
-it('Shoulf fail', ()=> {
-  assert.ok(null, 'aah')
-})
+test('Shoulf fail', ()=> {
+  assert.ok(null, 'Aah')
+});
 
-run()
+await run();
 ```
 
 ### Browser
@@ -32,7 +32,7 @@ run()
 CDN pattern: 
 
 - JSDELIVR: **`https://cdn.jsdelivr.net/npm/@jlbyte`**
-- PKG: **`tester@1.1.0`**
+- PKG: **`tester@1.1.1`**
 
 ```html
 <script type="importmap">
