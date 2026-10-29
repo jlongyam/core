@@ -8,6 +8,7 @@ Base packages JS monorepo.
 - [core/env](./packages/env)
 - [core/tester](./packages/tester)
 - [core/cmd](./packages/cmd)
+- [core/sys](./packages/sys)
 
 ## License
 

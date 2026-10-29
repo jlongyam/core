@@ -19,6 +19,7 @@ Low level functions
     - `.create`
     - `.delete`
   - `.folder`
+    - `.create`
     - `.list`
     - `.delete`
   - `.download`

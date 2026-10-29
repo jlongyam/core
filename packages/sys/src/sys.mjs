@@ -23,6 +23,7 @@ fs.file.create = FS.write;
 fs.file.delete = (p)=> fs.isFolder(p) ? false: fs.delete(p);
 
 fs.folder = FS.dir;
+fs.folder.create = fs.folder;
 fs.folder.list = FS.list;
 fs.folder.delete = (p)=> fs.isFile(p) ? false: fs.delete(p);
 
