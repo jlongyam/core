@@ -1,4 +1,4 @@
-import Cmd from "../src/Cmd.mjs";
+import Cmd from "@jlbyte/cmd";
 
 const cli = new Cmd();
 

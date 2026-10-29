@@ -1,7 +1,7 @@
 # Build Tool
 
 ```javascript
-const cli = new ArgParser({
+const cli = new Cmd({
   name: 'builder',
   version: '3.0.0',
   description: 'Build automation tool'

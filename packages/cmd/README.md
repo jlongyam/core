@@ -27,7 +27,6 @@ npm i @jlbyte/cmd --prefer-offline
 
 ```javascript
 #!/usr/bin/env node
-
 import Cmd from '@jlbyte/cmd';
 
 const cli = new Cmd({
@@ -90,7 +89,7 @@ Define required or optional arguments:
 ```javascript
 cli
   .command('create')
-  .argument('name', 'Project name', true)      // Required
+  .argument('name', 'Project name', true)       // Required
   .argument('template', 'Template type', false) // Optional
   .action((context) => {
     const name = context.args[0];
@@ -163,42 +162,31 @@ cli.use(async (context) => {
 });
 ```
 
-## API Reference
+## Arguments Design
 
-- [ArgParser](docs/api/ArgParser.md)
-- [Command](docs/api/Command.md)
-
-## Advanced Examples
-
-- [File Management](docs/examples/File_Management.md)
-- [Package Manager](docs/examples/Package_Manager.md)
-- [Build Tool](docs/examples/Build_Tool.md)
-
-## Argument Parsing
-
-ArgParser handles various argument formats:
+Cmd handles various argument formats:
 
 ```bash
-# Commands
+# 1. Commands
 cli command
 
-# Arguments
+# 2. Arguments
 cli command arg1 arg2
 
-# Long options
+# 3. Long options
 cli command --option value
 cli command --option=value
 
-# Short options
+# 4. Short options
 cli command -o value
 
-# Boolean flags
+# 5. Boolean flags
 cli command --flag
 
-# Combined short flags
+# 6. Combined short flags
 cli command -abc  # Same as -a -b -c
 
-# Mixed usage
+# 7. Mixed usage
 cli command arg1 --option value -f arg2
 ```
 
@@ -230,7 +218,7 @@ Help output includes:
 
 ## Error Handling
 
-ArgParser provides built-in error handling:
+Cmd provides built-in error handling:
 
 ```javascript
 cli
@@ -251,9 +239,19 @@ DEBUG=true cli command
 
 ## See more documentation
 
-- [Recipt](docs/Best_Practice.md)
-- [Testing](docs/Testing.md)
+- [Best Practice](./docs/Best_Practice.md)
+- [Testing](./docs/Testing.md)
 
+### API Reference
+ 
+- [Cmd](./docs/api/Cmd.md)
+- [Command](./docs/api/Command.md)
+
+### Advanced Examples
+
+- [File Management](./docs/examples/File_Management.md)
+- [Package Manager](./docs/examples/Package_Manager.md)
+- [Build Tool](./docs/examples/Build_Tool.md)
 
 ## Platform Support ##
 
@@ -264,7 +262,7 @@ DEBUG=true cli command
 
 ## License ##
 
-License __MIT__
+License [MIT](./LICENSE)
 
 This framework is provided as-is for building CLI applications.
 Feel free to use, modify, and distribute.
@@ -285,3 +283,4 @@ For issues and questions:
 1. Check the examples in this README
 2. Review the API reference
 3. Look at the included example usage in the framework file
+

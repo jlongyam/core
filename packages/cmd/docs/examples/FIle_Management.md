@@ -1,7 +1,7 @@
 # File Management
 
 ```javascript
-const cli = new ArgParser({
+const cli = new Cmd({
   name: 'filemanager',
   version: '1.0.0',
   description: 'File management utility'

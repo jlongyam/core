@@ -35,7 +35,7 @@ cli
   .action((context) => {
     context.cli.log('Installing packages...', 'cyan');
     // Installation logic
-    context.cli.log('✓ Installation complete', 'green');
+    context.cli.log('√ Installation complete', 'green');
   });
 ```
 

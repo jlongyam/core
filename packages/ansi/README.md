@@ -89,8 +89,8 @@ console.log(html(sentence[1]))
 ```html
 <script type="importmap">
   {
-    "import": {
-      "@jlbyte/ansi": "https://esm.sh/@jlbyte/ansi"
+    "imports": {
+      "@jlbyte/ansi": "https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.2/+esm"
     }
   }
 </script>
@@ -98,10 +98,13 @@ console.log(html(sentence[1]))
 <script type="module">
   import { icon, html, color } from '@jlbyte/ansi';
 
+  const { fg, fgBright, bg, bgBright } = color;
   const output = document.getElementById('output');
-  output.innerHTML += html(`Color ${color.fgBright.red('red')}`)+'<br>';
-  output.innerHTML += html(`And ${color.bg.yellow('Yellow')} background`)+'<br>';
-  output.innerHTML += `Icons<br> ${JSON.stringify(icon, 0, 2)}`;
+
+  output.innerHTML += html(`Color ${fgBright.red('red')}`)+'<br>';
+  output.innerHTML += html(`And ${bg.yellow('Yellow')} background`)+'<br>';
+
+  output.innerHTML += `Icons<br> ${JSON.stringify( icon, 0, 2)}`;
 </script>
 ```
 

@@ -7,6 +7,7 @@ Base packages JS monorepo.
 - [core/ansi](./packages/ansi)
 - [core/env](./packages/env)
 - [core/tester](./packages/tester)
+- [core/cmd](./packages/cmd)
 
 ## License
 

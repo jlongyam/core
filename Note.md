@@ -27,28 +27,27 @@ Prefer using NPM as workspace manager
 ### Execution
 
 - Run scripts: `npm run -w [@scope/]<name> <script-name>`
-- Run the dependency binary from the root: npm exec -w <local-pkg-name> -- <dep> --help
+- Run the dependency binary from the root: `npm exec -w <local-pkg-name> -- <dep> --help`
 
 ### Publishing
 
 #### Versioning
 
-- Set an exact version, example: `npm version 2.0.0 -w @jlbyte/cli`
+- Do versioning in packages/module: `cd packages/<module>`
+- Set an exact version, example: `npm version 2.0.0`
 - Auto-increment by semver keyword, example:
-  - `npm version patch -w @jlbyte/cli     # 1.0.0 -> 1.0.1`
-  - `npm version minor -w @jlbyte/cli     # 1.0.0 -> 1.1.0`
-  - `npm version major -w @jlbyte/cli     # 1.0.0 -> 2.0.0`
-- Bump multiple package, example: `npm version 2.0.0 -w @jlbyte/cli -w @jlbyte/async`
-- Bump all packages, example: `npm version 2.0.0`, not recommended
-- Sync internal deps after bumping, `npm install -w @jlbyte/cli`
+  - `npm version patch # 1.0.0 -> 1.0.1`
+  - `npm version minor # 1.0.0 -> 1.1.0`
+  - `npm version major # 1.0.0 -> 2.0.0`
+- Synchronize internal deps after bumping, from root: `npm install -w @jlbyte/<module>`
 
 #### Publish
 
 - Always publish from the individual package directory, not from the root
 - Check via dry run: ` npm pack --dry-run [--json]`
-- Root Login: `npm login --workspaces=false`
-- Root Publish: `npm publish --workspace=@jlbyte/<name> --access public`
-- Or add `"publishConfig": { "access": "public" }` to package.json
+- Login first: `npm login`
+- Publish: `npm publish --access public`
+- Or add `"publishConfig": { "access": "public" }` to `package.json`
 
 ### Cleaning
 
@@ -76,8 +75,7 @@ npm install --prefer-offline
 
 ### Tips:
 
-- Check package: `cat packages/cli/package.json | grep '"name"'   # -> "@jlbyte/cli"`
 - Check cache vendor: `npm cache ls [vendor]`
 - Disable hoisting:
   - Keep only Cordova nested: `npm i cordova@npm:noist@1`
-  - Add to root `.npmrc` `install-strategy=nested`
+  - Or add to root `.npmrc` `install-strategy=nested`

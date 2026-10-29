@@ -4,18 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ansi</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "@jlbyte/ansi": "https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.2/+esm"
+      }
+    }
+  </script>
   <style>pre { font: normal 16px/1.5 monospace; }</style>
 </head>
 <body>
   <pre id="output"></pre>
   <script type="module">
-    import { icon, html, color } from '../dist/ansi.mjs';
+    import { icon, html, color } from '@jlbyte/ansi';
 
+    const { fg, fgBright, bg, bgBright } = color;
     const output = document.getElementById('output');
   
-    output.innerHTML += html(`Color ${color.fgBright.red('red')}`)+'<br>';
-    output.innerHTML += html(`And ${color.bg.yellow('Yellow')} background`)+'<br>';
-    output.innerHTML += `Icons<br> ${JSON.stringify(icon, 0, 2)}`;
+    output.innerHTML += html(`Color ${fgBright.red('red')}`)+'<br>';
+    output.innerHTML += html(`And ${bg.yellow('Yellow')} background`)+'<br>';
+
+    output.innerHTML += `Icons<br> ${JSON.stringify( icon, 0, 2)}`;
   </script>
 </body>
 </html>

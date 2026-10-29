@@ -1,5 +1,5 @@
 import Command from './Command.mjs';
-import color from '@jlbyte/ansi/color';
+import { color } from '@jlbyte/ansi';
 
 /**
  * Cmd - A lightweight JavaScript framework

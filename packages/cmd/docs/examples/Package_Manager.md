@@ -1,7 +1,7 @@
 # Package Manager
 
 ```javascript
-const cli = new ArgParser({
+const cli = new Cmd({
   name: 'pkg',
   version: '2.0.0',
   description: 'Package manager'

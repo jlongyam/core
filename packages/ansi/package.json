@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/ansi",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "ANSI library collection",
   "keywords": [
     "ansi",
@@ -14,30 +14,19 @@
     "url": "https://github.com/jlongyam/core",
     "directory": "packages/ansi"
   },
-  "homepage": "https://github.com/jlongyam/core",
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "@rollup/plugin-terser": "^1.0.0",
     "rollup": "^4.66.0",
     "typescript": "^7.0.2"
   },
+  "main": "dist/ansi.cjs",
+  "jsdelivr": "dist/ansi.js",
   "exports": {
     ".": {
       "import": "./dist/ansi.mjs",
-      "require": "./dist/ansi.cjs",
-      "browser": "./dist/ansi.js",
       "types": "./dist/types/ansi.d.mts"
     }
-  },
-  "main": "dist/ansi.cjs",
-  "module": "dist/ansi.mjs",
-  "browser": "dist/ansi.js",
-  "types": "dist/types/ansi.d.mts",
-  "scripts": {
-    "build:rollup": "rollup --input.ansi=./src/index.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p terser && rollup --input.ansi=./src/index.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p terser && rollup --input.ansi=./src/index.mjs --dir ./dist --name ansi --format iife --entryFileNames \"[name].js\" -p terser",
-    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/ansi.mjs",
-    "build": "npm run build:rollup && npm run build:types"
   },
   "publishConfig": {
     "access": "public"
@@ -46,5 +35,10 @@
     "README.md",
     "LICENSE",
     "dist"
-  ]
+  ],
+  "scripts": {
+    "build:rollup": "rollup --input.ansi=./src/index.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" && rollup --input.ansi=./src/index.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" && rollup --input.ansi=./src/index.mjs --dir ./dist --name ansi --format iife --entryFileNames \"[name].js\"",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/ansi.mjs",
+    "build": "npm run build:rollup && npm run build:types"
+  }
 }

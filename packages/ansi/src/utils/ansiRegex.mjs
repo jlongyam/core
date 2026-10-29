@@ -1,4 +1,4 @@
-const ansiRegex = /(\x1b\[[0-9;]*m)/g; 
+const ansiRegex = /(\x1b\[[0-9;]*m)/g;
 
 function find(str) {
   let a = [];
@@ -8,7 +8,6 @@ function find(str) {
   }
   let filter = [];
   for( let i in a) {
-    // Extract codes from the full match (remove \x1b[ and m)
     const codeStr = a[i][0].slice(2, -1);
     filter.push({
       escape: a[i][0].replace(/\x1b/g, "\\x1b"),

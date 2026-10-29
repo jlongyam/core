@@ -1,14 +1,24 @@
 # Testing
 
-ArgParser can be easily tested. See `cli-tester.js` for a comprehensive testing framework.
+Cmd can be easily tested.
+
+```js
+// 1. Example test input
+const cli = new Cmd();
+
+console.log(cli.parse(['-v']))
+console.log(cli.parse(['-h']))
+```
 
 ```javascript
-// Example test
-const cli = new ArgParser({ name: 'test-cli' });
+// 2. Example test output
+const cli = new Cmd({ name: 'test-cli' });
 
-cli.command('test').action((context) => {
-  context.cli.log('Success');
-});
+cli
+  .command('test')
+  .action((context) => {
+    context.cli.log('Success');
+  });
 
 await cli.run(['test']);
 ```

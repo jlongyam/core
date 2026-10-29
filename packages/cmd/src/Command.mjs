@@ -2,7 +2,6 @@
  * Command - Base class to handle `<instance>.command`
  * require by Cmd
  */
-
 class Command {
   constructor(name, config, cli) {
     this.name = name;
@@ -12,7 +11,6 @@ class Command {
     this.handler = config.handler || (() => {});
     this.cli = cli;
   }
-
   option(flags, description, defaultValue = null) {
     const option = this.cli.parseOption(flags);
     this.options.set(option.name, {
@@ -22,17 +20,14 @@ class Command {
     });
     return this;
   }
-
   argument(name, description = '', required = true) {
     this.args.push({ name, description, required });
     return this;
   }
-
   action(handler) {
     this.handler = handler;
     return this;
   }
-
   generateHelp() {
     let help = '\n';
     help += `${this.name}\n`;
@@ -74,7 +69,6 @@ class Command {
 
     return help
   }
-
   async run(context) {
     for (let i = 0; i < this.args.length; i++) {
       const arg = this.args[i];

@@ -20,20 +20,37 @@
   },
   "license": "MIT",
   "author": "jlongyam",
-  "main": "src/Cmd.mjs",
-  "dependencies": {
-    "@jlbyte/ansi": "^1.2.0",
-    "@jlbyte/env": "^1.0.0"
+  "devDependencies": {
+    "@jlbyte/tester": "^1.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.66.0",
+    "typescript": "^7.0.2"
   },
+  "dependencies": {
+    "@jlbyte/ansi": "^1.2.1"
+  },
+  "main": "./dist/Cmd.cjs",
   "exports": {
     ".": {
-      "import": "./src/Cmd.mjs"
+      "import": "./dist/Cmd.mjs",
+      "require": "./dist/Cmd.cjs",
+      "types": "./dist/types/Cmd.d.ts"
     }
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/",
+    "docs"
+  ],
   "scripts": {
-    "usage:parse": "node usage/parse.mjs",
-    "usage:run": "node usage/run.mjs",
     "usage:quick": "node usage/quick.mjs",
-    "usage:log": "node usage/log.mjs"
+    "usage:run": "node usage/run.mjs",
+    "usage:parse": "node usage/parse.mjs",
+    "usage:log": "node usage/log.mjs",
+    "build:rollup": "rollup --input=./src/Cmd.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve -e @jlbyte/ansi && rollup --input=./src/Cmd.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e @jlbyte/ansi",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/Cmd.mjs",
+    "build": "npm run build:rollup && npm run build:types",
+    "test": "clear && node src/test.mjs"
   }
 }

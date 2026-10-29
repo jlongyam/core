@@ -33,7 +33,7 @@ Add a global option.
 cli.option('-v, --verbose', 'Verbose output', false);
 ```
 
-**Returns:** ArgParser instance (chainable)
+**Returns:** Cmd instance (chainable)
 
 ### use(middleware)
 
@@ -45,7 +45,7 @@ cli.use(async (context) => {
 });
 ```
 
-**Returns:** ArgParser instance (chainable)
+**Returns:** Cmd instance (chainable)
 
 ### default(commandName)
 
@@ -55,7 +55,7 @@ Set default command.
 cli.default('help');
 ```
 
-**Returns:** ArgParser instance (chainable)
+**Returns:** Cmd instance (chainable)
 
 ### run(args)
 
@@ -63,7 +63,7 @@ Execute the CLI with arguments.
 
 ```javascript
 cli.run(); // Uses process.argv
-cli.run(['command', 'arg1', '--flag']); // Custom args
+cli.run(['command', 'arg1', '--flag']); // Uses custom args
 ```
 
 **Returns:** Promise
@@ -78,7 +78,7 @@ cli.log('Warning', 'yellow');
 cli.log('Error', 'red');
 ```
 
-**Available colors:** `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `bright`, `dim`
+**Available colors:** `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `black`
 
 ### error(text)
 
@@ -90,7 +90,7 @@ cli.error('Something went wrong');
 
 ### generateHelp(commandName)
 
-Generate help text.
+Generate help text manually
 
 ```javascript
 const help = cli.generateHelp();        // Main help
