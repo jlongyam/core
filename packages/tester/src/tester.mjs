@@ -1,118 +1,107 @@
+import { icon, color, style, html } from '@jlbyte/ansi';
+import env from '@jlbyte/env';
 import assert from './assert.mjs';
 
-const now = () => (globalThis.performance ? performance.now() : Date.now());
+const { fg, bg, fgBright } = color; 
+const { cli, browser } = env;
 
-function makeSuite(name, parent = null) {
-  return { name, parent, items: [], before: [], after: [], beforeEach: [], afterEach: [], mode: 'normal' };
+let el_tester;
+let el_info_head;
+
+if(browser) {
+  el_tester = document.createElement('div');
+  el_tester.className = 'tester-runner';
+  if(!('test_runner_container' in window)) {
+    let el_test_runner_container = document.createElement('div')
+    el_test_runner_container.id = 'test_runner_container'
+    el_test_runner_container.appendChild(el_tester);
+    document.body.appendChild(el_test_runner_container);
+  }
+  else {
+    test_runner_container.appendChild(el_tester);
+  }
 }
-
-const root = makeSuite('');
-let current = root;
-
-function describe(name, fn) {
-  const suite = makeSuite(name, current);
-  current.items.push({ type: 'suite', suite });
-  const prev = current;
-  current = suite;
-  try { fn(); } finally { current = prev; }
-}
-
-function test(name, fn, opts = {}) {
-  current.items.push({ type: 'test', name, fn, timeout: opts.timeout, mode: opts.mode || 'normal' });
-}
-test.skip = (name, fn, opts) => test(name, fn, { ...opts, mode: 'skip' });
-test.only = (name, fn, opts) => test(name, fn, { ...opts, mode: 'only' });
-
-const beforeAll = (fn) => current.before.push(fn);
-const afterAll = (fn) => current.after.push(fn);
-const beforeEach = (fn) => current.beforeEach.push(fn);
-const afterEach = (fn) => current.afterEach.push(fn);
-
-async function withTimeout(promise, ms, label) {
-  let timer;
-  const timeout = new Promise((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`Timeout of ${ms}ms exceeded: ${label}`)), ms);
-  });
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
-}
-
-const chain = (suite, key) => {
-  const out = [];
-  for (let s = suite; s; s = s.parent) out.push(...s[key]);
-  return out;
-};
-const hasOnly = (suite) =>
-  suite.items.some((i) => (i.type === 'test' ? i.mode === 'only' : hasOnly(i.suite)));
-
-async function run({ files = [], timeout = 5000, log = console.log } = {}) {
-  for (const f of files) await import(f);
-
-  const onlyMode = hasOnly(root);
-  const result = { passed: 0, failed: 0, skipped: 0, failures: [] };
-  const start = now();
-
-  async function runSuite(suite, depth) {
-    const pad = '  '.repeat(depth);
-    if (suite.name) log(`${pad}${suite.name}`);
-    for (const fn of suite.before) await fn();
-    for (const item of suite.items) {
-      if (item.type === 'suite') { await runSuite(item.suite, depth + 1); continue; }
-      const fullName = [...pathOf(suite), item.name].join(' > ');
-      if (item.mode === 'skip' || (onlyMode && item.mode !== 'only')) {
-        result.skipped++;
-        log(`${pad}  - ${item.name} (skipped)`);
-        continue;
+let Test = {
+  report: [],
+  result: { passed: 0, failed: 0 },
+  add: function (name, fn) {
+    this.report.push({ name: name, fn: fn });
+  },
+  run: async function () {
+    this.result = { passed: 0, failed: 0 };
+    if(browser) {
+      var el_group = document.createElement('div');
+      el_group.className = 'tester-runner__group';
+      el_tester.appendChild(el_group);
+      var el_test_head = document.createElement('div');
+      el_test_head.className = 'tester-runner__group--head';
+      el_test_head.innerHTML += html(style.underline('Test'));
+      el_group.appendChild(el_test_head);
+    }
+    if(cli) {
+      console.group(`\n${style.underline('Test')}\n`);
+    }
+    for (var i = 0; i < this.report.length; i++) {
+      var test = this.report[i];
+      if(browser) {
+        var el_test = document.createElement('div');
+        el_test.className = 'tester-runner__group--test';
+        el_group.appendChild(el_test);
       }
-      const t0 = now();
       try {
-        for (const fn of chain(suite, 'beforeEach').reverse()) await fn();
-        await withTimeout(Promise.resolve().then(item.fn), item.timeout ?? timeout, fullName);
-        result.passed++;
-        log(`${pad}  ✓ ${item.name} (${Math.round(now() - t0)}ms)`);
-      } catch (error) {
-        result.failed++;
-        result.failures.push({ name: fullName, error });
-        log(`${pad}  ✗ ${item.name}`);
-      } finally {
-        try { for (const fn of chain(suite, 'afterEach')) await fn(); } catch (e) {
-          result.failed++; result.failures.push({ name: `${fullName} (afterEach)`, error: e });
+        const result = test.fn();
+        if (result && typeof result.then === 'function') {
+          await result;
+        }
+        this.result.passed++;
+        if(cli) {
+          console.log(`${fg.green(icon.ok)} ${fgBright.blue(test.name)}`);
+        }
+        if(browser) {
+          el_test.innerHTML += html(`${fg.green(icon.ok)} ${fgBright.blue(test.name)}`)
+        }
+      } catch (e) {
+        this.result.failed++;
+        if(cli) {
+          console.log(`${fgBright.red(icon.fail)} ${fgBright.red(test.name)}`);
+          console.groupCollapsed();
+            console.log(fgBright.black(e.message));
+          console.groupEnd();
+        }
+        if(browser) {
+          el_test.innerHTML += html(`${fgBright.red(icon.fail)} ${fgBright.red(test.name)}`);
+          var el_test_sub = document.createElement('div');
+          el_test_sub.className = 'tester-runner__group--test__sub';
+          el_test_sub.innerHTML += html(fgBright.black(e.message))
+          el_test.appendChild(el_test_sub);
         }
       }
     }
-    for (const fn of suite.after) await fn();
+    if(cli) {
+      console.groupEnd();
+      console.group(`\n${style.underline('Result')}\n`);
+        console.info(`${bg.green(fgBright.white(` ${this.result.passed} `))} ${fg.green('passed')}, ${bg.red(fgBright.white(` ${this.result.failed} `))} ${fgBright.red('failed')}`);
+      console.groupEnd();
+    }
+    if(browser) {
+      var el_info = document.createElement('div');
+      el_info.className = 'tester-runner__info';
+      el_tester.appendChild(el_info);
+      el_info_head = document.createElement('div');
+      el_info_head.className = 'tester-runner__info--head'
+      el_info_head.innerHTML = html(style.underline('Result'));
+      el_info.appendChild(el_info_head);
+      var el_info_result = document.createElement('div');
+      el_info_result.className = 'tester-runner__info--result';
+      el_info_result.innerHTML = html(`${bg.green(fgBright.white(` ${this.result.passed} `))} ${fg.green('passed')}, ${bg.red(fgBright.white(` ${this.result.failed} `))} ${fgBright.red('failed')}`);
+      el_info.appendChild(el_info_result);
+    }
   }
-
-  const pathOf = (suite) => {
-    const names = [];
-    for (let s = suite; s; s = s.parent) if (s.name) names.unshift(s.name);
-    return names;
-  };
-
-  await runSuite(root, 0);
-
-  log('');
-  for (const { name, error } of result.failures) {
-    log(`FAIL ${name}\n  ${error?.stack || error}\n`);
-  }
-  log(`${result.passed} passed, ${result.failed} failed, ${result.skipped} skipped (${Math.round(now() - start)}ms)`);
-
-  exit(result.failed ? 1 : 0);
-  return result;
-}
-
-function exit(code) {
-  if (!code) return;
-  if (globalThis.Deno?.exit) globalThis.Deno.exit(code);
-  else if (globalThis.process?.exit) globalThis.process.exit(code);
-}
-
-export {
-  describe,
-  test,
-  test as it,
-  beforeAll,
-  afterAll,
-  beforeEach,
-  afterEach,
-  run
 };
+function it(name, fn) {
+  Test.add(name, fn);
+}
+function run() {
+  return Test.run();
+}
+export { assert, it, run };

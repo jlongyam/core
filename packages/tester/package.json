@@ -9,24 +9,46 @@
     "test-runner"
   ],
   "homepage": "https://github.com/jlongyam/core",
-  "bugs": {
-    "url": "https://github.com/jlongyam/core/issues"
-  },
   "repository": {
     "url": "https://github.com/jlongyam/core",
-    "directory": "packages/ansi"
+    "directory": "packages/tester"
   },
   "license": "MIT",
   "author": "jlongyam",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.2",
+    "rollup": "^4.66.0",
+    "typescript": "^7.0.2"
+  },
   "dependencies": {
     "@jlbyte/ansi": "^1.2.1",
-    "@jlbyte/env": "^1.0.0"
+    "@jlbyte/env": "^1.1.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/tester.mjs",
+      "require": "./dist/env.cjs",
+      "browser": "./dist/env.js",
+      "types": "./dist/types/env.d.mts"
+    }
+  },
+  "module": "dist/env.mjs",
+  "browser": "dist/env.js",
+  "types": "dist/types/env.d.mts",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "main": "index.mjs",
   "scripts": {
-    "usage:quick": "node usage/quick.mjs",
-    "usage:expect": "node usage/expect.mjs",
-    "usage:tweak": "node usage/tweak.mjs"
-
+    "usage": "node usage/test.mjs",
+    "build:rollup": "rollup --input=./src/tester.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve -e bowser,@jlbyte/ansi,@jlbyte/env && rollup --input=./src/tester.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e bowser,@jlbyte/ansi,@jlbyte/env && rollup --input=./src/tester.mjs --dir ./dist --name tester --format iife --entryFileNames \"[name].js\" -p node-resolve -e bowser,@jlbyte/ansi,@jlbyte/env -g bowser:bowser,ansi:ansi,env:env",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/tester.mjs",
+    "build": "npm run build:rollup && npm run build:types"
   }
 }

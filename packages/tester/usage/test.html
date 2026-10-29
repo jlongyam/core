@@ -8,20 +8,22 @@
     {
       "imports": {
         "@jlbyte/ansi": "https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.1/+esm",
-        "@jlbyte/env": "https://cdn.jsdelivr.net/npm/@jlbyte/env"
+        "@jlbyte/env": "https://cdn.jsdelivr.net/npm/@jlbyte/env@1.1.0/+esm"
       }
     }
   </script>
-  <link href="../src/smoke.css" rel="stylesheet">
+  <link href="../dist/tester.css" rel="stylesheet">
 </head>
 <body>
   <script type="module">
-    import { it, run } from '../src/tweak.mjs';
-    import assert from '../src/assert.mjs';
+    import { assert, it, run } from '../dist/tester.mjs';
 
     it('Sample Test', ()=> {
       assert.equal(1,1)
     });
+    it('Shoulf fail', ()=> {
+      assert.ok(null, 'aah')
+    })
 
     await run()
   </script>
