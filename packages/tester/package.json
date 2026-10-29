@@ -32,9 +32,7 @@
       "import": "./dist/tester.mjs",
       "require": "./dist/tester.cjs",
       "default": "./dist/tester.mjs"
-    },
-    "./iife": "./dist/tester.js",
-    "./tester.css": "./dist/tester.css"
+    }
   },
   "main": "./dist/tester.cjs",
   "module": "./dist/tester.mjs",
