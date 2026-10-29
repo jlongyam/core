@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/tester",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JS Tester library",
   "keywords": [
     "test",
@@ -27,16 +27,16 @@
   },
   "exports": {
     ".": {
-      "import": "./src/tester.mjs",
+      "import": "./dist/tester.mjs",
       "require": "./dist/tester.cjs",
       "browser": "./dist/tester.js",
       "types": "./dist/types/tester.d.mts"
     }
   },
   "main": "./dist/tester.cjs",
-  "module": "dist/tester.mjs",
-  "browser": "dist/tester.js",
-  "types": "dist/types/tester.d.mts",
+  "module": "./dist/tester.mjs",
+  "browser": "./dist/tester.js",
+  "types": "./dist/types/tester.d.mts",
   "files": [
     "README.md",
     "LICENSE",
@@ -47,7 +47,7 @@
   },
   "scripts": {
     "usage": "node usage/test.mjs",
-    "build:rollup": "rollup --input=./src/tester.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve -e bowser,@jlbyte/ansi,@jlbyte/env && rollup --input=./src/tester.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e bowser,@jlbyte/ansi,@jlbyte/env && rollup --input=./src/tester.mjs --dir ./dist --name tester --format iife --entryFileNames \"[name].js\" -p node-resolve -e bowser,@jlbyte/ansi,@jlbyte/env -g bowser:bowser,ansi:ansi,env:env",
+    "build:rollup": "rollup --input=./src/tester.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve,terser -e bowser,@jlbyte/ansi,@jlbyte/env && rollup --input=./src/tester.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve,terser -e bowser,@jlbyte/ansi,@jlbyte/env && rollup --input=./src/tester.mjs --dir ./dist --name tester --format iife --entryFileNames \"[name].js\" -p node-resolve,terser -e bowser,@jlbyte/ansi,@jlbyte/env -g bowser:bowser,ansi:ansi,env:env",
     "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/tester.mjs",
     "build:css": "cp src/tester.css dist/tester.css",
     "build": "npm run build:rollup && npm run build:types && npm run build:css"

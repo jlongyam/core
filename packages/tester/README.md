@@ -35,11 +35,11 @@ run()
     "imports": {
       "@jlbyte/ansi": "https://esm.sh/@jlbyte/ansi@1.2.1",
       "@jlbyte/env": "https://esm.sh/@jlbyte/env@1.1.0",
-      "@jlbyte/tester": "https://esm.sh/@jlbyte/tester@1.0.2"
+      "@jlbyte/tester": "https://esm.sh/@jlbyte/tester@1.0.3"
     }
   }
 </script>
-<link href="https://esm.sh/@jlbyte/tester@1.0.2/dist/tester.css" rel="stylesheet">
+<link href="https://esm.sh/@jlbyte/tester@1.0.3/dist/tester.css" rel="stylesheet">
 <script type="module">
   import { assert, it, run } from '@jlbyte/tester';
 
