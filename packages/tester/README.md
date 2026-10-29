@@ -29,17 +29,22 @@ run()
 
 ### Browser
 
+CDN pattern: 
+
+- JSDELIVR: **`https://cdn.jsdelivr.net/npm/@jlbyte`**
+- PKG: **`tester@1.0.5`**
+
 ```html
 <script type="importmap">
   {
     "imports": {
-      "@jlbyte/ansi": "https://esm.sh/@jlbyte/ansi@1.2.1",
-      "@jlbyte/env": "https://esm.sh/@jlbyte/env@1.1.0",
-      "@jlbyte/tester": "https://esm.sh/@jlbyte/tester@1.0.5"
+      "@jlbyte/ansi": "{JSDELIVR}/ansi@1.2.1/+esm",
+      "@jlbyte/env": "{JSDELIVR}/env@1.1.0/+esm",
+      "@jlbyte/tester": "{JSDELIVR}/{PKG}/+esm"
     }
   }
 </script>
-<link href="https://esm.sh/@jlbyte/tester@1.0.5/dist/tester.css" rel="stylesheet">
+<link href="{JSDELIVR}/{PKG}/dist/tester.css" rel="stylesheet">
 <script type="module">
   import { assert, it, run } from '@jlbyte/tester';
 
