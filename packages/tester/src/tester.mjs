@@ -98,10 +98,10 @@ let Test = {
     }
   }
 };
-function it(name, fn) {
+function test(name, fn) {
   Test.add(name, fn);
 }
 function run() {
   return Test.run();
 }
-export { assert, it, run };
+export { assert, test, run };

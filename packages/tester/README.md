@@ -32,7 +32,7 @@ run()
 CDN pattern: 
 
 - JSDELIVR: **`https://cdn.jsdelivr.net/npm/@jlbyte`**
-- PKG: **`tester@1.0.5`**
+- PKG: **`tester@1.1.0`**
 
 ```html
 <script type="importmap">
@@ -46,16 +46,16 @@ CDN pattern:
 </script>
 <link href="{JSDELIVR}/{PKG}/dist/tester.css" rel="stylesheet">
 <script type="module">
-  import { assert, it, run } from '@jlbyte/tester';
+  import { assert, test, run } from '@jlbyte/tester';
 
-  it('Sample Test', ()=> {
+  test('Sample Test', ()=> {
     assert.equal(1,1)
   });
-  it('Shoulf fail', ()=> {
-    assert.ok(null, 'aah')
-  })
+  test('Shoulf fail', ()=> {
+    assert.ok(null, 'Aah')
+  });
 
-  await run()
+  await run();
 </script>
 </body>
 ```
