@@ -12,8 +12,6 @@
     "cli-builder",
     "cli-help"
   ],
-  "homepage": "https://github.com/jlongyam/core",
-  "bugs": "https://github.com/jlongyam/core/issues",
   "repository": {
     "url": "https://github.com/jlongyam/core",
     "directory": "packages/cmd"
@@ -21,7 +19,7 @@
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "@jlbyte/tester": "^1.0.6",
+    "@jlbyte/tester": "^1.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "rollup": "^4.66.0",
     "typescript": "^7.0.2"
@@ -43,10 +41,14 @@
     "dist/",
     "docs"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "usage:quick": "node usage/quick.mjs",
     "usage:run": "node usage/run.mjs",
     "usage:parse": "node usage/parse.mjs",
+    "usage:option": "node usage/option.mjs",
     "usage:log": "node usage/log.mjs",
     "build:rollup": "rollup --input=./src/Cmd.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve -e @jlbyte/ansi && rollup --input=./src/Cmd.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e @jlbyte/ansi",
     "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/Cmd.mjs",

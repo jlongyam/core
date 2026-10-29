@@ -96,3 +96,27 @@ Generate help text manually
 const help = cli.generateHelp();        // Main help
 const cmdHelp = cli.generateHelp('build'); // Command help
 ```
+
+### parse(array)
+
+Useful for test
+
+```js
+const cli = new Cmd();
+
+console.log(cli.parse(['-h']))
+```
+
+### parseOption(string)
+
+For test input option.
+
+```js
+const cli = new Cmd();
+
+console.log(cli.parseOption('-f, --force'));
+```
+
+```
+{ short: '-f', long: '--force', name: 'force' }
+```

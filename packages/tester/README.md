@@ -38,8 +38,6 @@ CDN pattern:
 <script type="importmap">
   {
     "imports": {
-      "@jlbyte/ansi": "{JSDELIVR}/ansi@1.2.1/+esm",
-      "@jlbyte/env": "{JSDELIVR}/env@1.1.0/+esm",
       "@jlbyte/tester": "{JSDELIVR}/{PKG}/+esm"
     }
   }
