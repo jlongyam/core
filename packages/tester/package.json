@@ -29,14 +29,11 @@
     ".": {
       "import": "./dist/tester.mjs",
       "require": "./dist/tester.cjs",
-      "browser": "./dist/tester.js",
       "types": "./dist/types/tester.d.mts"
     }
   },
   "main": "./dist/tester.cjs",
-  "module": "./dist/tester.mjs",
   "browser": "./dist/tester.js",
-  "types": "./dist/types/tester.d.mts",
   "files": [
     "README.md",
     "LICENSE",
