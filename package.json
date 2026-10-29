@@ -18,6 +18,7 @@
     "packages/ansi",
     "packages/env",
     "packages/tester",
-    "packages/cmd"
+    "packages/cmd",
+    "packages/sys"
   ]
 }
