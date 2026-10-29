@@ -33,13 +33,13 @@ run()
 <script type="importmap">
   {
     "imports": {
-      "@jlbyte/ansi": "https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.1/+esm",
-      "@jlbyte/env": "https://cdn.jsdelivr.net/npm/@jlbyte/env@1.1.0/+esm",
-      "@jlbyte/tester": "https://cdn.jsdelivr.net/npm/@jlbyte/tester@1.0.0/+esm"
+      "@jlbyte/ansi": "https://esm.sh/@jlbyte/ansi@1.2.1",
+      "@jlbyte/env": "https://esm.sh/@jlbyte/env@1.1.0",
+      "@jlbyte/tester": "https://esm.sh/@jlbyte/tester@1.0.0"
     }
   }
 </script>
-<link href="https://cdn.jsdelivr.net/npm/@jlbyte/env@1.1.0/dist/tester.css" rel="stylesheet">
+<link href="https://esm.sh/@jlbyte/tester@1.1.0/dist/tester.css" rel="stylesheet">
 <script type="module">
   import { assert, it, run } from '@jlbyte/tester';
 

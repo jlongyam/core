@@ -7,16 +7,17 @@
   <script type="importmap">
     {
       "imports": {
-        "@jlbyte/ansi": "https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.1/+esm",
-        "@jlbyte/env": "https://cdn.jsdelivr.net/npm/@jlbyte/env@1.1.0/+esm"
+        "@jlbyte/ansi": "https://esm.sh/@jlbyte/ansi@1.2.1",
+        "@jlbyte/env": "https://esm.sh/@jlbyte/env@1.1.0",
+        "@jlbyte/tester": "https://esm.sh/@jlbyte/tester@1.0.1"
       }
     }
   </script>
-  <link href="../dist/tester.css" rel="stylesheet">
+  <link href="https://esm.sh/@jlbyte/tester@1.0.1/dist/tester.css" rel="stylesheet">
 </head>
 <body>
   <script type="module">
-    import { assert, it, run } from '../dist/tester.mjs';
+    import { assert, it, run } from '@jlbyte/tester';
 
     it('Sample Test', ()=> {
       assert.equal(1,1)
