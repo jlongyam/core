@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/tester",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "JS Tester library",
   "keywords": [
     "test",
@@ -27,13 +27,19 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/types/tester.d.mts",
+      "browser": "./dist/tester.mjs",
       "import": "./dist/tester.mjs",
       "require": "./dist/tester.cjs",
-      "types": "./dist/types/tester.d.mts"
-    }
+      "default": "./dist/tester.mjs"
+    },
+    "./iife": "./dist/tester.js",
+    "./tester.css": "./dist/tester.css"
   },
   "main": "./dist/tester.cjs",
-  "browser": "./dist/tester.js",
+  "module": "./dist/tester.mjs",
+  "browser": "./dist/tester.mjs",
+  "jsdelivr": "./dist/tester.js",
   "files": [
     "README.md",
     "LICENSE",
