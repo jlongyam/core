@@ -1,7 +1,7 @@
 {
   "name": "@jlbyte/dev",
   "version": "1.0.0",
-  "description": "CLI Application for build packages",
+  "description": "CLI App for build packages",
   "keywords": [
     "dev-tool",
     "build",
@@ -16,16 +16,34 @@
   },
   "license": "MIT",
   "author": "jlongyam",
+  "devDependencies": {
+    "@jlbyte/tester": "^1.1.1"
+  },
   "dependencies": {
     "@jlbyte/cmd": "^1.0.1",
     "@jlbyte/sys": "^1.0.2",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@types/node": "^26.6.6",
     "rollup": "^4.66.0",
     "typescript": "^7.0.2"
   },
   "bin": {
     "dev": "./cli.mjs"
   },
+  "module": "./cli.mjs",
+  "exports": {
+    "import": "./cli.mjs"
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "cli.mjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "test": "node ./cli.mjs"
+    "test": "node test.mjs"
   }
 }
