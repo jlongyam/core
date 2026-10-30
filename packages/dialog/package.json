@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI dialog",
   "keywords": [
     "cli",
@@ -50,13 +50,28 @@
     "example:spinner": "node usage/example/spinner.mjs",
     "example:tasklog": "node usage/example/tasklog.mjs",
     "example:cancelation": "node usage/example/cancelation.mjs",
-    "option:withguide": "node usage/option/withguide.mjs",
+    "option": "node usage/option/withguide.mjs",
     "option:signal": "node usage/option/signal.mjs",
+    "prompt": "node usage/prompt/confirm.mjs",
+    "prompt:text": "node usage/prompt/text.mjs",
+    "prompt:password": "node usage/prompt/password.mjs",
+    "prompt:multiline": "node usage/prompt/multiline.mjs",
+    "prompt:select": "node usage/prompt/select.mjs",
+    "prompt:selectkey": "node usage/prompt/selectkey.mjs",
+    "prompt:autocomplete": "node usage/prompt/autocomplete.mjs",
+    "prompt:path": "node usage/prompt/path.mjs",
+    "prompt:date": "node usage/prompt/date.mjs",
+    "group": "node usage/group/group.mjs",
+    "group:multiselect": "node usage/group/multiselect.mjs",
     "function:intro": "node usage/function/intro.mjs",
     "function:outro": "node usage/function/outro.mjs",
+    "function:cancel": "node usage/function/cancel.mjs",
+    "function:spinner": "node usage/function/spinner.mjs",
+    "function:progress": "node usage/function/progress.mjs",
+    "function:note": "node usage/function/note.mjs",
     "function:box": "node usage/function/box.mjs",
+    "function:tasklog": "node usage/function/tasklog.mjs",
     "function:log": "node usage/function/log.mjs",
-    
     "build:rollup": "rollup --input=./index.mjs --dir ./ --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e @clack/prompts",
     "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./ --outDir ./ ./index.mjs --types node",
     "build": "npm run build:rollup && npm run build:types"
@@ -67,6 +82,8 @@
   "files": [
     "README.md",
     "LICENSE",
-    "dist/"
+    "index.mjs",
+    "index.cjs",
+    "index.d.mts"
   ]
 }

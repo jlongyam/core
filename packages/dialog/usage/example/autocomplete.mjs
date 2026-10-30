@@ -13,7 +13,7 @@ const selectPackage = await autocomplete({
   maxItems: 5
 });
 
-if(isCancel(selectPackage)) {
+if (isCancel(selectPackage)) {
   console.log('Select package canceled');
   process.exit(0);
 }
