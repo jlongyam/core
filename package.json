@@ -19,6 +19,7 @@
     "packages/env",
     "packages/tester",
     "packages/cmd",
-    "packages/sys"
+    "packages/sys",
+    "packages/dialog"
   ]
 }

@@ -8,40 +8,65 @@
     "prompt"
   ],
   "repository": {
-    "type": "git",
-    "url": "https://github.com/core"
+    "url": "https://github.com/core",
+    "directory": "packages/dialog"
   },
   "license": "MIT",
   "author": "jlongyam",
-  "scripts": {
-    "example:quick": "node example/quick.mjs",
-    "example:text": "node example/text.mjs",
-    "example:confirm": "node example/confirm.mjs",
-    "example:select": "node example/select.mjs",
-    "example:selectkey": "node example/selectkey.mjs",
-    "example:autocomplete": "node example/autocomplete.mjs",
-    "example:groupmultiselect": "node example/groupmultiselect.mjs",
-    "example:validation": "node example/validation.mjs",
-    "example:wizard": "node example/wizard.mjs",
-    "example:task": "node example/task.mjs",
-    "example:types": "node example/types.mjs",
-    "example:datepicker": "node example/datepicker.mjs",
-    "example:selectpath": "node example/selectpath.mjs",
-    "example:placeholder": "node example/placeholder.mjs",
-    "example:tab": "node example/tab.mjs",
-    "example:progress": "node example/progress.mjs",
-    "example:spinner": "node example/spinner.mjs",
-    "example:tasklog": "node example/tasklog.mjs",
-    "example:abortcontrol": "node example/abortcontrol.mjs",
-    "usage:text": "node usage/text.mjs"
-  },
   "dependencies": {
     "@clack/prompts": "^1.8.1"
   },
-  "main": "index.js",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@types/node": "^26.6.6",
+    "rollup": "^4.66.0",
+    "typescript": "^7.0.2"
+  },
+  "main": "./index.cjs",
   "exports": {
     ".": {
-      "import": "./index.mjs"
+      "import": "./index.mjs",
+      "types": "./index.d.mts"
     }
-  }
+  },
+  "scripts": {
+    "usage": "node usage/quick.mjs",
+    "example": "node usage/example/container.mjs",
+    "example:text": "node usage/example/text.mjs",
+    "example:select": "node usage/example/select.mjs",
+    "example:autocomplete": "node usage/example/autocomplete.mjs",
+    "example:groupmultiselect": "node usage/example/groupmultiselect.mjs",
+    "example:confirm": "node usage/example/confirm.mjs",
+    "example:wizard": "node usage/example/wizard.mjs",
+    "example:validation": "node usage/example/validation.mjs",
+    "example:task": "node usage/example/task.mjs",
+    "example:form": "node usage/example/form.mjs",
+    "example:datepicker": "node usage/example/datepicker.mjs",
+    "example:selectkey": "node usage/example/selectkey.mjs",
+    "example:selectpath": "node usage/example/selectpath.mjs",
+    "example:tab": "node usage/example/tab.mjs",
+    "example:placeholder": "node usage/example/placeholder.mjs",
+    "example:progress": "node usage/example/progress.mjs",
+    "example:spinner": "node usage/example/spinner.mjs",
+    "example:tasklog": "node usage/example/tasklog.mjs",
+    "example:cancelation": "node usage/example/cancelation.mjs",
+    "option:withguide": "node usage/option/withguide.mjs",
+    "option:signal": "node usage/option/signal.mjs",
+    "function:intro": "node usage/function/intro.mjs",
+    "function:outro": "node usage/function/outro.mjs",
+    "function:box": "node usage/function/box.mjs",
+    "function:log": "node usage/function/log.mjs",
+    
+    "build:rollup": "rollup --input=./index.mjs --dir ./ --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e @clack/prompts",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./ --outDir ./ ./index.mjs --types node",
+    "build": "npm run build:rollup && npm run build:types"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "dist/"
+  ]
 }

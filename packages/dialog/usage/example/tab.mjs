@@ -1,4 +1,4 @@
-import { autocomplete, isCancel } from '@clack/prompts';
+import { autocomplete, isCancel } from '@jlbyte/dialog';
 
 async function pickBranch() {
   const branch = await autocomplete({

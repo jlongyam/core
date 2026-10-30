@@ -1,4 +1,4 @@
-import { select, isCancel } from '@clack/prompts';
+import { select, isCancel } from '@jlbyte/dialog';
 
 const framework = await select({
   message: 'Choose a framework:',

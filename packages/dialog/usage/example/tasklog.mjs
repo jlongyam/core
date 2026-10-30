@@ -1,4 +1,4 @@
-import { taskLog, intro, outro } from '@clack/prompts';
+import { taskLog, intro, outro } from '@jlbyte/dialog';
 
 async function buildProject() {
   intro('Project Builder');

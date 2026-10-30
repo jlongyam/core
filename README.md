@@ -9,6 +9,7 @@ Base packages JS monorepo.
 - [core/tester](./packages/tester)
 - [core/cmd](./packages/cmd)
 - [core/sys](./packages/sys)
+- [core/dialog](./packages/dialog)
 
 ## License
 

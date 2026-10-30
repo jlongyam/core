@@ -1,4 +1,4 @@
-import { spinner, confirm, isCancel } from '@clack/prompts';
+import { spinner, confirm, isCancel } from '@jlbyte/dialog';
 
 async function longRunningTask() {
   const shouldStart = await confirm({

@@ -1,4 +1,4 @@
-import { isCancel, text } from '@clack/prompts';
+import { isCancel, text } from '@jlbyte/dialog';
 
 const name = await text({
   message: 'What is this',

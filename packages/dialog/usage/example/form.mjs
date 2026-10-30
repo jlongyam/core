@@ -1,4 +1,4 @@
-import { text, select, groupMultiselect, isCancel } from '@clack/prompts';
+import { text, select, groupMultiselect, isCancel } from '@jlbyte/dialog';
 
 async function collectUserData() {
   const name = await text({

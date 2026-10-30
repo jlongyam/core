@@ -1,4 +1,4 @@
-import { date, isCancel, cancel, outro } from '@clack/prompts';
+import { date, isCancel, cancel, outro } from '@jlbyte/dialog';
 
 async function pickReleaseDate() {
   const result = await date({

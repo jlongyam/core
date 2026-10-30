@@ -11,3 +11,7 @@ Wrapper of `@clack/prompts`
 - [bomb.sh](https://bomb.sh)
 - [getting-started](https://bomb.sh/docs/clack/basics/getting-started/)
 - [best-practices](https://bomb.sh/docs/clack/guides/best-practices/)
+
+## License
+
+[MIT](./LICENSE)

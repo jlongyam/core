@@ -1,13 +1,13 @@
-import { text, select, isCancel } from '@clack/prompts';
+import { text, select, isCancel } from '@jlbyte/dialog';
 
 async function timedPrompt() {
-  // Auto-cancel after 30 seconds
+  // Auto-cancel after 3 seconds
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 30000);
+  const timeoutId = setTimeout(() => controller.abort(), 3000);
 
   try {
     const name = await text({
-      message: 'Quick! Enter your name (30 second limit):',
+      message: 'Quick! Enter your name (3 second limit):',
       signal: controller.signal,
     });
 
@@ -43,7 +43,7 @@ async function racePrompts() {
       setTimeout(() => {
         resolve('detected-framework');
         controller.abort();
-      }, 5000);
+      }, 2000);
     }),
   ]);
 

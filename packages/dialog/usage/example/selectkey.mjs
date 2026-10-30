@@ -1,4 +1,4 @@
-import { selectKey, isCancel } from '@clack/prompts';
+import { selectKey, isCancel } from '@jlbyte/dialog';
 
 async function confirmDestructive() {
   const choice = await selectKey({

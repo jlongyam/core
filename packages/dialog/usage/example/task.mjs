@@ -1,4 +1,4 @@
-import { text, select, confirm, tasks, spinner, isCancel } from '@clack/prompts';
+import { text, select, confirm, tasks, spinner, isCancel } from '@jlbyte/dialog';
 
 async function cliTool() {
   while (true) {

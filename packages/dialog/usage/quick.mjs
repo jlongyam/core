@@ -1,4 +1,4 @@
-import { text, select, confirm, isCancel } from '@clack/prompts';
+import { text, select, confirm, isCancel } from '@jlbyte/dialog';
 
 async function main() {
   const name = await text({

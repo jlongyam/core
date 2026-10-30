@@ -1,4 +1,4 @@
-import { path, isCancel } from '@clack/prompts';
+import { path, isCancel } from '@jlbyte/dialog';
 
 async function selectConfigFile() {
   const configPath = await path({

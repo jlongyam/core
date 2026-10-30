@@ -1,4 +1,4 @@
-import { groupMultiselect, isCancel } from '@clack/prompts';
+import { groupMultiselect, isCancel } from '@jlbyte/dialog';
 
 const tools = await groupMultiselect({
   message: 'Select development tools:',
