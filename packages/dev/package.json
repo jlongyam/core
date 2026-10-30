@@ -1,0 +1,31 @@
+{
+  "name": "@jlbyte/dev",
+  "version": "1.0.0",
+  "description": "CLI Application for build packages",
+  "keywords": [
+    "dev-tool",
+    "build",
+    "build-tool",
+    "build-package"
+  ],
+  "homepage": "https://github.com/jlongyam/core",
+  "bugs": "https://github.com/jlongyam/core/issues",
+  "repository": {
+    "url": "https://github.com/jlongyam/core",
+    "directory": "packages/dev"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "dependencies": {
+    "@jlbyte/cmd": "^1.0.1",
+    "@jlbyte/sys": "^1.0.2",
+    "rollup": "^4.66.0",
+    "typescript": "^7.0.2"
+  },
+  "bin": {
+    "dev": "./cli.mjs"
+  },
+  "scripts": {
+    "test": "node ./cli.mjs"
+  }
+}

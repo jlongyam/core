@@ -1,7 +1,7 @@
-import execSh from 'exec-sh';
+import { execSync } from 'child_process';
 import FS from 'fs-jetpack';
 
-const exec = execSh.promise;
+const exec = (cmd)=> execSync(cmd, { stdio: 'inherit'});
 function fs(s = false) {
   if(s) {
     return FS.cwd(s).cwd();
@@ -27,15 +27,15 @@ fs.folder.create = fs.folder;
 fs.folder.list = FS.list;
 fs.folder.delete = (p)=> fs.isFile(p) ? false: fs.delete(p);
 
-async function download(url) {
-  await exec(`curl -OLs ${url}`)
+function download(url) {
+  exec(`curl -OLs ${url}`)
 };
-async function extract(path) {
+function extract(path) {
   let target = path.replace('.zip','');
   if(!fs.isFolder(target)) {
-    await exec(`mkdir ${target}`);
+    exec(`mkdir ${target}`);
   }
-  await exec(`unzip -qn ${path} -d ${target}`);
+  exec(`unzip -qn ${path} -d ${target}`);
 }
 
 fs.download = download;
