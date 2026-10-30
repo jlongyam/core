@@ -20,6 +20,7 @@
     "packages/tester",
     "packages/cmd",
     "packages/sys",
-    "packages/dialog"
+    "packages/dialog",
+    "packages/dev"
   ]
 }
