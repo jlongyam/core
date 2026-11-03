@@ -21,6 +21,7 @@
     "packages/cmd",
     "packages/sys",
     "packages/dialog",
-    "packages/dev"
+    "packages/dev",
+    "packages/js"
   ]
 }

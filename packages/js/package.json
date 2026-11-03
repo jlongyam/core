@@ -1,0 +1,34 @@
+{
+  "name": "@jlbyte/js",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/jlongyam/core",
+  "bugs": "https://github.com/jlongyam/core/issues",
+  "repository": {
+    "url": "https://github.com/jlongyam/core",
+    "directory": "packages/js"
+  },
+  "license": "MIT",
+  "author": "jlongyam",
+  "devDependencies": {
+    "@jlbyte/tester": "^1.1.1"
+  },
+  "dependencies": {
+    "@jlbyte/cmd": "^1.0.2",
+    "@jlbyte/sys": "^1.0.2",
+    "@rollup-extras/plugin-strip-comments": "^0.1.4",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@types/node": "^26.6.6",
+    "rollup": "^4.67.4",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "typescript": "^7.0.2"
+  },
+  "bin": {
+    "js": "./cli.mjs"
+  },
+  "main": "cli.mjs",
+  "scripts": {
+    "test": "node test.mjs"
+  }
+}

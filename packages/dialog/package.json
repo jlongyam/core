@@ -17,6 +17,7 @@
     "@clack/prompts": "^1.8.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/node": "^26.6.6",
     "rollup": "^4.66.0",
@@ -74,7 +75,8 @@
     "function:log": "node usage/function/log.mjs",
     "build:rollup": "rollup --input=./index.mjs --dir ./ --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e @clack/prompts",
     "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./ --outDir ./ ./index.mjs --types node",
-    "build": "npm run build:rollup && npm run build:types"
+    "build": "npm run build:rollup && npm run build:types",
+    "compile": "rollup --input.dialog=./index.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve,commonjs"
   },
   "publishConfig": {
     "access": "public"
