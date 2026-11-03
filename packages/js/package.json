@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@jlbyte/cmd": "^1.0.2",
+    "@jlbyte/dialog": "^1.0.1",
     "@jlbyte/sys": "^1.0.2",
     "@rollup-extras/plugin-strip-comments": "^0.1.4",
     "@rollup/plugin-commonjs": "^29.0.3",
