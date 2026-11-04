@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/ansi",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "ANSI library collection",
   "keywords": [
     "ansi",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "@jlbyte/js": "^1.0.0"
+    "@jlbyte/js": "^1.0.2"
   },
   "main": "dist/ansi.cjs",
   "module": "dist/ansi.mjs",

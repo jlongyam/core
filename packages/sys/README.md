@@ -7,20 +7,24 @@ Low level functions
 ## API
 
 - `exec`
+- `execSh`
 - `fs`
   - `.exists`
   - `.isFile`
   - `.isFolder`
+  - `.remove`
   - `.delete`
   - `.copy`
   - `.file`
     - `.exists`
     - `.read`
     - `.append`
-    - `.read`
     - `.create`
     - `.delete`
+    - `.download`
+    - `.extract`
   - `.folder`
+    - `.exists`
     - `.create`
     - `.list`
     - `.delete`

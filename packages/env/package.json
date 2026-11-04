@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/env",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Basic environment detector",
   "keywords": [
     "env",
@@ -18,7 +18,7 @@
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "@jlbyte/js": "^1.0.0"
+    "@jlbyte/js": "^1.0.2"
   },
   "dependencies": {
     "bowser": "^2.15.0"

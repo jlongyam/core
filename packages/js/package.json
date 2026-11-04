@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JS build command line tool",
   "keywords": [
     "build",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@jlbyte/cmd": "^1.0.3",
     "@jlbyte/dialog": "^1.0.2",
-    "@jlbyte/sys": "^1.0.3",
+    "@jlbyte/sys": "^1.0.4",
     "@rollup-extras/plugin-strip-comments": "^0.1.4",
     "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",

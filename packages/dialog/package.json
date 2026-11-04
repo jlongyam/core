@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/dialog",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI dialog",
   "keywords": [
     "cli",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "@jlbyte/js": "^1.0.0"
+    "@jlbyte/js": "^1.0.2"
   },
   "dependencies": {
     "@clack/prompts": "^1.8.1"

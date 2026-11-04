@@ -85,7 +85,7 @@ async function build(input, output, options = {}) {
     let assets = option.asset.split(',');
     for(let i in assets) {
       let filename = path.basename(assets[i]);
-      fs.copy(assets[i], `${output}/${filename}`, { overwrite: true});
+      fs.copy(assets[i], `${output}/${filename}`);
     }
   }
 }

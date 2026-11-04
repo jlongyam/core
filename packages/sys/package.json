@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/sys",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "System tools",
   "keywords": [
     "system",
@@ -13,9 +13,6 @@
   },
   "license": "MIT",
   "author": "jlongyam",
-  "dependencies": {
-    "fs-jetpack": "^5.1.0"
-  },
   "devDependencies": {
     "@jlbyte/js": "^1.0.0",
     "@jlbyte/tester": "^1.1.1"
@@ -39,6 +36,6 @@
   ],
   "scripts": {
     "test": "cd test && node fs.test.mjs",
-    "build": "js build ./src/sys.mjs ./dist -p ./package.json -e fs-jetpack"
+    "build": "js build ./src/sys.mjs ./dist -p ./package.json"
   }
 }
