@@ -1,9 +1,14 @@
 {
   "name": "@jlbyte/js",
   "version": "1.0.0",
-  "description": "",
+  "description": "JS build command line tool",
+  "keywords": [
+    "build",
+    "js-build",
+    "build-helper",
+    "easy-build"
+  ],
   "homepage": "https://github.com/jlongyam/core",
-  "bugs": "https://github.com/jlongyam/core/issues",
   "repository": {
     "url": "https://github.com/jlongyam/core",
     "directory": "packages/js"
@@ -25,11 +30,34 @@
     "rollup-plugin-cleanup": "^3.2.1",
     "typescript": "^7.0.2"
   },
-  "bin": {
-    "js": "./cli.mjs"
+  "main": "dist/build.cjs",
+  "module": "src/build.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/build.d.mts",
+      "import": "./src/build.mjs",
+      "require": "./dist/build.cjs"
+    }
   },
-  "main": "cli.mjs",
+  "bin": {
+    "js": "./src/cli.mjs"
+  },
+  "files": [
+    "README.md",
+    "LICENSE",
+    "src",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "test": "node test.mjs"
+    "test:prepare": "node test/prepare.test.mjs",
+    "test:build": "node test/build.test.mjs",
+    "test:cli": "node test/cli.test.mjs",
+    "test": "npm run test:prepare && npm run test:build && npm run test:cli",
+    "build:cjs": "rollup --input=./src/build.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p commonjs,node-resolve,@rollup-extras/plugin-strip-comments,rollup-plugin-cleanup -e @jlbyte/sys,path",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./src --outDir ./dist ./src/build.mjs --types node",
+    "build": "npm run build:cjs && npm run build:types"
   }
 }

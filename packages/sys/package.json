@@ -18,18 +18,21 @@
   },
   "devDependencies": {
     "@jlbyte/tester": "^1.1.1",
+    "@rollup-extras/plugin-strip-comments": "^0.1.4",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/node": "^26.6.6",
     "rollup": "^4.66.0",
+    "rollup-plugin-cleanup": "^3.2.1",
     "typescript": "^7.0.2"
   },
   "main": "./dist/sys.cjs",
   "module": "./dist/sys.mjs",
   "exports": {
     ".": {
-      "types": "./dist/types/sys.d.mts",
+      "types": "./dist/sys.d.mts",
       "import": "./dist/sys.mjs",
-      "default": "./dist/sys.cjs"
+      "require": "./dist/sys.cjs"
     }
   },
   "publishConfig": {
@@ -42,8 +45,10 @@
   ],
   "scripts": {
     "test": "cd test && node fs.test.mjs",
-    "build:rollup": "rollup --input=./src/sys.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve -e child_process,fs-jetpack && rollup --input=./src/sys.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve -e child_process,fs-jetpack",
-    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/sys.mjs",
+    "build:es": "rollup --input=./src/sys.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p node-resolve,commonjs,@rollup-extras/plugin-strip-comments,rollup-plugin-cleanup -e child_process,fs-jetpack",
+    "build:cjs": "rollup --input=./src/sys.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p node-resolve,commonjs,@rollup-extras/plugin-strip-comments,rollup-plugin-cleanup -e child_process,fs-jetpack",
+    "build:rollup": "npm run build:es && npm run build:cjs",
+    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist ./dist/sys.mjs",
     "build": "npm run build:rollup && npm run build:types"
   }
 }

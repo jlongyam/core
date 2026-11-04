@@ -1,5 +1,5 @@
 import { TERMINAL_PALETTE } from './color16palette.mjs';
-import ansi16ToHex from './ansi16ToHex.mjs';
+import ansi16ToHex from './ansi16toHex.mjs';
 import ansi256ToAnsi16 from './ansi256ToAnsi16.mjs';
 import ansiStyleToCss from './ansiStyleToCss.mjs';
 import escapeHtml from './escapeHtml.mjs';
