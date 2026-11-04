@@ -1,14 +1,13 @@
 {
   "name": "@jlbyte/ansi",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "ANSI library collection",
   "keywords": [
     "ansi",
     "ansi-icon",
     "ansi-color",
     "ansi-html",
-    "ansi-to-html",
-    "ascii"
+    "ansi-to-html"
   ],
   "repository": {
     "url": "https://github.com/jlongyam/core",
@@ -17,15 +16,16 @@
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "rollup": "^4.66.0",
-    "typescript": "^7.0.2"
+    "@jlbyte/js": "^1.0.0"
   },
   "main": "dist/ansi.cjs",
+  "module": "dist/ansi.mjs",
   "jsdelivr": "dist/ansi.js",
   "exports": {
     ".": {
+      "types": "./dist/ansi.d.mts",
       "import": "./dist/ansi.mjs",
-      "types": "./dist/types/ansi.d.mts"
+      "require": "./dist/ansi.cjs"
     }
   },
   "publishConfig": {
@@ -37,12 +37,6 @@
     "dist"
   ],
   "scripts": {
-    "build:es": "rollup --input.ansi=./src/index.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\"",
-    "build:cjs": "rollup --input.ansi=./src/index.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\"",
-    "build:iife": "rollup --input.ansi=./src/index.mjs --dir ./dist --name ansi --format iife --entryFileNames \"[name].js\"",
-    "build:all": "npm run build:es && npm run build:cjs && npm run build:iife",
-    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist/types ./dist/ansi.mjs",
-    "build": "npm run build:all && npm run build:types",
-    "test": "js build ./src/index.mjs ./temp -n ansi -f es,cjs,iife -p ./package.json"
+    "build": "js build ./src/index.mjs ./dist -n ansi -f es,cjs,iife -p ./package.json"
   }
 }
