@@ -23,7 +23,7 @@ For browser usage, it require **bowser** as dependency
   {
     "imports": {
       "bowser": "{CDN}/bowser@2.15.0/+esm",
-      "@jlbyte/env": "{CDN}/@jlbyte/env@1.1.1/+esm"
+      "@jlbyte/env": "{CDN}/@jlbyte/env@1.1.2/+esm"
     }
   }
 </script>
@@ -38,7 +38,7 @@ For browser usage, it require **bowser** as dependency
 
 ```html
 <script src="{CDN}/bowser@2.15.0/es5.min.js"></script>
-<script src="{CDN}/@jlbyte/env@1.1.1/dist/env.min.js"></script>
+<script src="{CDN}/@jlbyte/env@1.1.2/dist/env.min.js"></script>
 <script>
   console.log(env);
 </script>
