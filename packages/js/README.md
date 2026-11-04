@@ -1,5 +1,7 @@
 # JS
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/js/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/js)
+
 JS build command line tool.
 
 ## Usage

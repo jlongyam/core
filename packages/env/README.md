@@ -1,5 +1,7 @@
 # Env
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/env/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/env)
+
 Basic environment detector.
 
 ## Usage

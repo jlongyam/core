@@ -1,5 +1,7 @@
 # Tester
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/tester/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/tester)
+
 Tiny cross-runtime test runner,
 Standard JS only.
 

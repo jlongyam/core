@@ -1,5 +1,7 @@
 # Sys
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/sys/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/sys)
+
 Low level functions
 
 ## API

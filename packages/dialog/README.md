@@ -1,5 +1,7 @@
 # Dialog
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/dialog/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/dialog)
+
 Wrapper of `@clack/prompts`
 
 ## Install

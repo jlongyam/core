@@ -1,5 +1,7 @@
 # Cmd
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/cmd/badge)](https://www.jsdelivr.com/package/npm/@jlbyte/cmd)
+
 Wrapper of `cac`.
 
 ## Usage

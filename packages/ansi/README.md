@@ -1,5 +1,7 @@
 # ANSI
 
+[![](https://data.jsdelivr.com/v1/package/npm/@jlbyte/ansi/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@jlbyte/ansi)
+
 It is core ansi library
 
 > Install: `npm i @jlbyte/ansi --prefer-offline`
