@@ -1,6 +1,6 @@
 {
   "name": "@jlbyte/dialog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI dialog",
   "keywords": [
     "cli",
@@ -14,81 +14,30 @@
   "license": "MIT",
   "author": "jlongyam",
   "devDependencies": {
-    "@clack/prompts": "^1.8.1",
-    "@rollup-extras/plugin-strip-comments": "^0.1.4",
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@types/node": "^26.6.6",
-    "rollup": "^4.66.0",
-    "rollup-plugin-cleanup": "^3.2.1",
-    "typescript": "^7.0.2"
+    "@jlbyte/js": "^1.0.0"
   },
-  "main": "./dist/dialog.cjs",
-  "module": "./dist/dialog.mjs",
+  "dependencies": {
+    "@clack/prompts": "^1.8.1"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "exports": {
     ".": {
-      "types": "./dist/dialog.d.mts",
-      "import": "./dist/dialog.mjs",
-      "default": "./dist/dialog.cjs"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
-  },
-  "scripts": {
-    "usage": "node usage/quick.mjs",
-    "example": "node usage/example/container.mjs",
-    "example:text": "node usage/example/text.mjs",
-    "example:select": "node usage/example/select.mjs",
-    "example:autocomplete": "node usage/example/autocomplete.mjs",
-    "example:groupmultiselect": "node usage/example/groupmultiselect.mjs",
-    "example:confirm": "node usage/example/confirm.mjs",
-    "example:wizard": "node usage/example/wizard.mjs",
-    "example:validation": "node usage/example/validation.mjs",
-    "example:task": "node usage/example/task.mjs",
-    "example:form": "node usage/example/form.mjs",
-    "example:datepicker": "node usage/example/datepicker.mjs",
-    "example:selectkey": "node usage/example/selectkey.mjs",
-    "example:selectpath": "node usage/example/selectpath.mjs",
-    "example:tab": "node usage/example/tab.mjs",
-    "example:placeholder": "node usage/example/placeholder.mjs",
-    "example:progress": "node usage/example/progress.mjs",
-    "example:spinner": "node usage/example/spinner.mjs",
-    "example:tasklog": "node usage/example/tasklog.mjs",
-    "example:cancelation": "node usage/example/cancelation.mjs",
-    "option": "node usage/option/withguide.mjs",
-    "option:signal": "node usage/option/signal.mjs",
-    "prompt": "node usage/prompt/confirm.mjs",
-    "prompt:text": "node usage/prompt/text.mjs",
-    "prompt:password": "node usage/prompt/password.mjs",
-    "prompt:multiline": "node usage/prompt/multiline.mjs",
-    "prompt:select": "node usage/prompt/select.mjs",
-    "prompt:selectkey": "node usage/prompt/selectkey.mjs",
-    "prompt:autocomplete": "node usage/prompt/autocomplete.mjs",
-    "prompt:path": "node usage/prompt/path.mjs",
-    "prompt:date": "node usage/prompt/date.mjs",
-    "group": "node usage/group/group.mjs",
-    "group:multiselect": "node usage/group/multiselect.mjs",
-    "function:intro": "node usage/function/intro.mjs",
-    "function:outro": "node usage/function/outro.mjs",
-    "function:cancel": "node usage/function/cancel.mjs",
-    "function:spinner": "node usage/function/spinner.mjs",
-    "function:progress": "node usage/function/progress.mjs",
-    "function:note": "node usage/function/note.mjs",
-    "function:box": "node usage/function/box.mjs",
-    "function:tasklog": "node usage/function/tasklog.mjs",
-    "function:log": "node usage/function/log.mjs",
-    "build:es": "rollup --input.dialog=./src/index.mjs --dir ./dist --format es --entryFileNames \"[name].mjs\" -p commonjs,node-resolve,@rollup-extras/plugin-strip-comments,rollup-plugin-cleanup",
-    "build:cjs": "rollup --input.dialog=./src/index.mjs --dir ./dist --format cjs --entryFileNames \"[name].cjs\" -p commonjs,node-resolve,@rollup-extras/plugin-strip-comments,rollup-plugin-cleanup",
-    "build:rollup": "npm run build:es && npm run build:cjs",
-    "build:types": "tsc --allowJs --declaration --emitDeclarationOnly --rootDir ./dist --outDir ./dist ./dist/dialog.mjs --types node",
-    "build": "npm run build:rollup && npm run build:types"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "files": [
     "README.md",
     "LICENSE",
-    "index.mjs",
-    "index.cjs",
-    "index.d.mts"
-  ]
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "usage": "node usage/quick.mjs",
+    "build": "js build ./src/index.mjs ./dist -e @clack/prompts -p ./package.json"
+  }
 }
