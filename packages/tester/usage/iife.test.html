@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tester</title>
+  <link href="https://cdn.jsdelivr.net/npm/@jlbyte/tester@1.1.2/dist/tester.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@jlbyte/ansi@1.2.3/dist/ansi.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bowser@2.15.0/es5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jlbyte/env@1.1.2/dist/env.min.js"></script>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/@jlbyte/tester@1.1.2/dist/tester.min.js"></script>
+  <script>
+    'use strict'
+    
+    var assert = tester.assert;
+    var test = tester.test;
+    var run = tester.run;
+    
+    test('Sample Test', ()=> {
+      assert.equal(1,1)
+    });
+    test('Shoulf fail', ()=> {
+      assert.ok(null, 'Aah')
+    })
+
+    run()
+  </script>
+</body>
+</html>

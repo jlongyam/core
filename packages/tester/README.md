@@ -32,7 +32,7 @@ await run();
 CDN pattern: 
 
 - JSDELIVR: **`https://cdn.jsdelivr.net/npm/@jlbyte`**
-- PKG: **`tester@1.1.1`**
+- PKG: **`tester@1.1.2`**
 
 ```html
 <script type="importmap">
